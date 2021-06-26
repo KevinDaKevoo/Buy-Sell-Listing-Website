@@ -23,3 +23,52 @@ module.exports = (db) => {
   });
   return router;
 };
+
+
+app.get("/", (res, req) => {
+
+});
+
+app.get("/login", (res, req) => {
+
+});
+
+app.post("/login", (res, req) => {
+
+});
+
+app.get("/register", (res, req) => {
+
+});
+
+app.post("/register", (res, req) => {
+
+});
+
+app.get("/product/:product_id", (res, req) => {
+
+});
+
+app.post("/product/:product_id", (res, req) => {
+
+});
+
+app.get("/message/:user_id", (res, req) => {
+
+});
+
+app.get("/product/:product_id/message", (res, req) => {
+
+});
+
+app.post("/product/:product_id/message", (res, req) => {
+
+});
+
+app.get("/favourite/:user_id", (res, req) => {
+
+});
+
+app.post("/products/favourite/:user_id/:product_id", (res, req) => {
+
+});
