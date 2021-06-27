@@ -7,3 +7,53 @@ body {
     color: #244751;
   }
 }
+
+
+.featured-title {
+  display: flex;
+  justify-content: center;
+}
+
+nav {
+  margin: 2em;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  background-color: plum;
+}
+
+
+.nav-item.nav-link{
+  display: flexbox;
+  justify-content: space-around;
+  padding-top: 4px;
+}
+
+.navbar-brand {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+}
+
+.featured-products-1 {
+display: flex;
+flex-direction: column;
+width: 50%;
+justify-content: flex-start;
+margin: 10px;
+}
+
+
+.featured-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.cta-buttons {
+  margin-top: 7px;
+}
+
+.btn-favorite {
+font-family: monospace;
+background-color: greenyellow;
+}
+
