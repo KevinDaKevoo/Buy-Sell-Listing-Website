@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const cookieParser = require('cookieParser');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -24,11 +25,7 @@ module.exports = (db) => {
   return router;
 };
 
-
-app.get("/", (res, req) => {
-
-});
-
+/*
 app.get("/login", (res, req) => {
 
 });
@@ -72,3 +69,4 @@ app.get("/favourite/:user_id", (res, req) => {
 app.post("/products/favourite/:user_id/:product_id", (res, req) => {
 
 });
+*/

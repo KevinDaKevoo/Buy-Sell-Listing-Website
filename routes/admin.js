@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const cookieParser = require('cookieParser');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -17,9 +18,7 @@ module.exports = (db) => {
   return router;
 };
 
-
-
-
+/*
 app.get("/admin", (res, req) => {
 
 });
@@ -43,3 +42,4 @@ app.post("/admin/product_id/sold", (res, req) => {
 app.get("/logout", (res, req) => {
 
 });
+*/
