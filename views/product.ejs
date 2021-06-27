@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Product Page</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+    <%- include("_header") %>
+    <main style="margin: 1em">
+      <h1 class = "product-title">Product title</h1>
+      <section class = "product-container">
+        <thead >
+          <div class = "product-info">
+            <label> product description</label>
+          <tr>
+            <img class = "featured-img" src = 'https://i.pcmag.com/imagery/reviews/038Dr5TVEpwIv8rCljx6UcF-14.1588802180.fit_scale.size_220x220.jpg'>
+            <table class = "cta-buttons">
+            <th scope="col"> <form class = "form" method = "POST" action = "/favorites"> <button type = "submit" class = 'btn-favorite'>Add to Favorites</button>
+            </form></th>
+            <th scope="col"><form class = "form" method = "GET" action = "/new_message"><button class = 'btn-message'>Contact Seller</button></form></th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </div>
+    </section>
+  </body>
+</html>
