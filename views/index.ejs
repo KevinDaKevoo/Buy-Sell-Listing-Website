@@ -9,10 +9,30 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <%- include("_header") %> 
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+    <%- include("_header") %>
+    <main style="margin: 1em">
+      <h1 class = "featured-title">Featured Deals right now!</h1>
+      <section class = "featured-container">
+        <thead >
+
+          <div class = "featured-products-1">
+          <tr>
+            <img class = "featured-img" src = 'https://i.pcmag.com/imagery/reviews/038Dr5TVEpwIv8rCljx6UcF-14.1588802180.fit_scale.size_220x220.jpg'>
+            <table class = "cta-buttons">
+            <th scope="col"> <form class = "form" method = "POST" action = "/favorites"> <button type = "submit" class = 'btn-favorite'>Add to Favorites</button>
+            </form></th>
+            <th scope="col"><form class = "form" method = "GET" action = "/products/product:id"><button class = 'btn-product-info'>Check it out!</button>
+            </form></th>
+            <th scope="col"><form class = "form" method = "GET" action = "/new_message"><button class = 'btn-message'>Contact Seller</button></form></th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </div>
+    </section>
   </body>
 </html>
