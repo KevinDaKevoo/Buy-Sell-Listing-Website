@@ -43,7 +43,7 @@ router.post("/register", (res, req) => {
 });
 
 router.get("/product/:product_id", (res, req) => {
-
+  res.render("product")
 });
 
 router.post("/product/:product_id", (res, req) => {
@@ -51,11 +51,11 @@ router.post("/product/:product_id", (res, req) => {
 });
 
 router.get("/message/:user_id", (res, req) => {
-
+  res.render("message")
 });
 
 router.get("/product/:product_id/message", (res, req) => {
-
+  res.render("new_message")
 });
 
 router.post("/product/:product_id/message", (res, req) => {
@@ -63,10 +63,14 @@ router.post("/product/:product_id/message", (res, req) => {
 });
 
 router.get("/favourite/:user_id", (res, req) => {
-
+  res.render("favourite")
 });
 
 router.post("/products/favourite/:user_id/:product_id", (res, req) => {
 
 });
+
+router.get("/logout", (res, req) => {
+
+})
 */

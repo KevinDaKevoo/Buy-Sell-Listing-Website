@@ -18,17 +18,17 @@ module.exports = (db) => {
   return router;
 };
 
-/*
 router.get("/admin", (res, req) => {
-  res.render("admin")
+  res.render("admin");
 });
 
+/*
 router.get("/admin/products", (res, req) => {
   res.render("admin_products")
 });
 
 router.get("/admin/products/product_id", (res, req) => {
-
+  res.render("admin_product_edit")
 });
 
 router.post("/admin/product_id/delete", (res, req) => {
@@ -39,7 +39,7 @@ router.post("/admin/product_id/sold", (res, req) => {
 
 });
 
-router.get("/logout", (res, req) => {
+router.get("/admin/logout", (res, req) => {
 
 });
 */
