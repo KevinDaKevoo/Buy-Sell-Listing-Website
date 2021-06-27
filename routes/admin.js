@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const cookieParser = require('cookieParser');
+
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -19,27 +19,27 @@ module.exports = (db) => {
 };
 
 /*
-app.get("/admin", (res, req) => {
+router.get("/admin", (res, req) => {
+  res.render("admin")
+});
+
+router.get("/admin/products", (res, req) => {
+  res.render("admin_products")
+});
+
+router.get("/admin/products/product_id", (res, req) => {
 
 });
 
-app.get("/admin/products", (res, req) => {
+router.post("/admin/product_id/delete", (res, req) => {
 
 });
 
-app.get("/admin/products/product_id", (res, req) => {
+router.post("/admin/product_id/sold", (res, req) => {
 
 });
 
-app.post("/admin/product_id/delete", (res, req) => {
-
-});
-
-app.post("/admin/product_id/sold", (res, req) => {
-
-});
-
-app.get("/logout", (res, req) => {
+router.get("/logout", (res, req) => {
 
 });
 */

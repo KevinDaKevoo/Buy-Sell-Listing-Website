@@ -7,7 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
-const cookieParser = require('cookieParser');
+
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -25,48 +25,48 @@ module.exports = (db) => {
   return router;
 };
 
+router.get("/login", (res, req) => {
+  res.render("login");
+});
+
 /*
-app.get("/login", (res, req) => {
+router.post("/login", (res, req) => {
 
 });
 
-app.post("/login", (res, req) => {
+router.get("/register", (res, req) => {
+  res.render("register");
+});
+
+router.post("/register", (res, req) => {
 
 });
 
-app.get("/register", (res, req) => {
+router.get("/product/:product_id", (res, req) => {
 
 });
 
-app.post("/register", (res, req) => {
+router.post("/product/:product_id", (res, req) => {
 
 });
 
-app.get("/product/:product_id", (res, req) => {
+router.get("/message/:user_id", (res, req) => {
 
 });
 
-app.post("/product/:product_id", (res, req) => {
+router.get("/product/:product_id/message", (res, req) => {
 
 });
 
-app.get("/message/:user_id", (res, req) => {
+router.post("/product/:product_id/message", (res, req) => {
 
 });
 
-app.get("/product/:product_id/message", (res, req) => {
+router.get("/favourite/:user_id", (res, req) => {
 
 });
 
-app.post("/product/:product_id/message", (res, req) => {
-
-});
-
-app.get("/favourite/:user_id", (res, req) => {
-
-});
-
-app.post("/products/favourite/:user_id/:product_id", (res, req) => {
+router.post("/products/favourite/:user_id/:product_id", (res, req) => {
 
 });
 */
