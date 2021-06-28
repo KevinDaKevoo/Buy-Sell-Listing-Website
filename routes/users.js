@@ -7,7 +7,6 @@
 
 const express = require('express');
 const router  = express.Router();
-// const cookieSession = require('cookie-session');
 
 
 module.exports = (db) => {
@@ -15,45 +14,57 @@ module.exports = (db) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
         const users = data.rows;
+        const current_user = req.session.user_email;
         res.json({ users });
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
-      });
+      });      
   });
 
   router.get("/login", (req, res) => {
+    console.log('entering route:');
     db.query(`SELECT * FROM users;`)
       .then(data => {
-        const user_email = req.session.email;
-        console.log(user_email);
+        const users = data.rows;
+        const user_email = req.session.user_email;
         const templateVars = { user_email };
-        res.render("login", templateVars);
+        return res.render("login", templateVars);
       })
       .catch(err => {
         res
           .status(500)
           .json({error: err.message});
       });
+    
   });
   
   router.post("/login", (req, res) => {
     const email = req.body.email;
     const values = [email];
     const sqlQuery = `SELECT * FROM users WHERE email = $1`;
-    db.query(sqlQuery, values)
+    return db.query(sqlQuery, values)
       .then(data => {
-        req.session.email = user_email;
-        console.log(data.rows);
-        res.redirect("/");
-      })
+        const user = data.rows[0];
+        if (user) {
+          console.log("I am here");
+          req.session.user_email = user.email;
+          console.log(req.session.user_email);
+
+          res.redirect("/"); //may be res.render("index") - try it now?
+        } else {
+          res.send("Unauth access");
+        }
+      }) //maybe in /login get needs res.session.user_email?
       .catch(err => {
         res
           .status(500)
           .json({err: err.message});
       });
+
+    // return res.redirect("/");
   });
 
   router.get("/logout", (req, res) => {
@@ -66,10 +77,6 @@ module.exports = (db) => {
 
 
 /*
-
-
-
-
 router.get("/product/:product_id", (res, req) => {
   res.render("product")
 });
