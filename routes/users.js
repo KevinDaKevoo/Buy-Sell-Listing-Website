@@ -22,6 +22,8 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
+
+      
   });
 
   router.get("/login", (req, res) => {
@@ -30,13 +32,14 @@ module.exports = (db) => {
         const user_email = req.session.email;
         console.log(user_email);
         const templateVars = { user_email };
-        res.render("login", templateVars);
+        // res.render("login", templateVars);
       })
       .catch(err => {
         res
           .status(500)
           .json({error: err.message});
       });
+    res.render("login");
   });
   
   router.post("/login", (req, res) => {
