@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
+// const cookieSession = require('cookie-session');
 
 
 module.exports = (db) => {
@@ -22,25 +23,52 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.get("/login", (req, res) => {
+    db.query(`SELECT * FROM users;`)
+      .then(data => {
+        const user_email = req.session.email;
+        console.log(user_email);
+        const templateVars = { user_email };
+        res.render("login", templateVars);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({error: err.message});
+      });
+  });
+  
+  router.post("/login", (req, res) => {
+    const email = req.body.email;
+    const values = [email];
+    const sqlQuery = `SELECT * FROM users WHERE email = $1`;
+    db.query(sqlQuery, values)
+      .then(data => {
+        req.session.email = user_email;
+        console.log(data.rows);
+        res.redirect("/");
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({err: err.message});
+      });
+  });
+
+  router.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/");
+  });
+  
   return router;
 };
 
-router.get("/login", (res, req) => {
-  res.render("login");
-});
 
 /*
-router.post("/login", (res, req) => {
 
-});
 
-router.get("/register", (res, req) => {
-  res.render("register");
-});
 
-router.post("/register", (res, req) => {
-
-});
 
 router.get("/product/:product_id", (res, req) => {
   res.render("product")
@@ -70,7 +98,5 @@ router.post("/products/favourite/:user_id/:product_id", (res, req) => {
 
 });
 
-router.get("/logout", (res, req) => {
 
-})
 */
