@@ -9,19 +9,34 @@
     <h3>Fake Kijiji</h3>
     </div>
       <div class="navbar-nav">
-       
-       <div><a class="nav-item nav-link" href="/users/login">LOGIN</a>
+
+       <!-- <div><a class="nav-item nav-link" href="/users/login">LOGIN</a>
         </div>
         <div class="search">
         <textarea class="search" placeholder="search..."></textarea>
         <button class="btn-submit">Submit</button>
-<!--      
+
           <div>Logged in as: </div>
           <div class="search">
             <textarea class="search" placeholder="search..."></textarea>
-            <button class="btn-submit">Submit</button> -->
+            <button class="btn-submit">Submit</button>
 
-    </div>
+    </div> -->
+
+
+    <% if (!user_email) { %>
+      <div><a class="nav-item nav-link" href="/users/login">LOGIN</a></div>
+      <div class="search">
+        <textarea class="search" placeholder="search..."></textarea>
+        <button class="btn-submit"  type = "submit">Submit</button>
+        <% } else { %>
+          <form class="form-inline" action="/logout" method="POST"></form>
+        <div>Logged in as: <%=user_email%></div>
+        <div class="search">
+          <textarea class="search" placeholder="search..."></textarea>
+          <button class="btn-submit">Submit</button>
+          <% } %>
+        </div>
         </div>
     </div>
   </nav>
