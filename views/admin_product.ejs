@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Product Page</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+    <%- include("_header") %>
+    <section>
+      <div class="admin-input-form">
+        <br /><br /><br />
+        <form method="POST" action="/admin/add_listing">
+          <br />
+          <label for="name">Product Name</label><br />
+          <input type="text" id="name" name="name" /><br />
+          <label for="seller_id">Seller ID:</label><br />
+          <input type="text" id="seller_id" name="seller_id" /><br />
+          <label for="type_id">Type ID:</label><br />
+          <input type="text" id="type_id" name="type_id" /><br />
+          <label for="description">Description</label><br />
+          <input type="text" id="description" name="description" /><br />
+          <label for="photo_1">Photo:</label><br />
+          <input type="text" id="photo_1" name="photo_1" /><br />
+          <label for="price">Price:</label><br />
+          <input type="text" id="price" name="price" /><br />
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

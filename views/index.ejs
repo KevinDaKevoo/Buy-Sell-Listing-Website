@@ -19,30 +19,38 @@
         <div class = "featured-products-1"></div>
         <thead >
           <%for (let product of products) {%>
-            <%if (!product.is_featured) {%>
+            <%if (product.is_featured) {%>
             <div>
               <img class="featured-image" src="<%= product.photo_1 %>" alt="Card image cap">
               <tr>
                 <th><%= product.name %></th>
                 <th><p>$<%= product.price %></p></th>
                 <th><form method = "GET" action = "/users/product/<%=product.id %>"><button type="submit" class="btn btn-primary">More Info</button></form></th>
-
-                <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
-
+                <%if (user_email === "ally@123.com") { %>
+                  <th><form method = "POST" action = "/admin/<%=product.id%>/delete"><button type="submit" class="btn btn-primary">Delete!</button></form></th>
+                  <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn btn-primary">Sold!</button></form></th>
+                  <% } else {%>
+                    <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
+                  <% } %>
                 </tr>
               </div>
               <% } %>
             <%}%>
               <h2>Not A Featured Deal</h2>
             <%for (let product of products) {%>
-              <%if (product.is_featured) {%>
+              <%if (!product.is_featured) {%>
               <div>
                 <img class="featured-image" src="<%= product.photo_1 %>" alt="Card image cap">
                 <tr>
                   <th><%= product.name %></th>
                   <th><p>$<%= product.price %></p>
                     <th><form method = "GET" action = "/users/product/<%=product.id%>"><button type="submit" class="btn btn-primary">More Info</button></form></th>
-                    <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
+                    <%if (user_email === "ally@123.com") { %>
+                      <th><form method = "POST" action = "/admin/<%=product.id%>/delete"><button type="submit" class="btn btn-primary">Delete!</button></form></th>
+                      <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn btn-primary">Sold!</button></form></th>
+                      <% } else {%>
+                        <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
+                      <% } %>
                   </tr>
                 </div>
                 <% } %>

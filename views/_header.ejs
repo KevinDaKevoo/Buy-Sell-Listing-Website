@@ -1,16 +1,26 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-success">
-    <div class="nav">
-      <a class="nav-item nav-link" href="/">Home</a>
-      <a class="nav-item nav-link" href="/users/message">Messages</a>
-      <a class="nav-item nav-link" href="/users/favourite">Your Favorites</a>
-    </div>
-    <div class="title">
-    <h3>Fake Kijiji</h3>
-    </div>
-      <div class="navbar-nav">
-
-       <!-- <div><a class="nav-item nav-link" href="/users/login">LOGIN</a>
+    <%if (user_email === "ally@123.com") { %>
+        <div class="nav">
+          <a class="nav-item nav-link" href="/">Home</a>
+          <a class="nav-item nav-link" href="/admin/message">Messages</a>
+          <a class="nav-item nav-link" href="/admin/add_listing">Add Listing</a>
+        </div>
+        <div class="title">
+          <h3>Fake Kijiji</h3>
+        </div>
+        <%} else {%>
+          <div class="nav">
+            <a class="nav-item nav-link" href="/">Home</a>
+            <a class="nav-item nav-link" href="/users/message">Messages</a>
+            <a class="nav-item nav-link" href="/users/favourite">Your Favorites</a>
+          </div>
+          <div class="title">
+            <h3>Fake Kijiji</h3>
+          </div>
+          <% } %>
+    <div class="navbar-nav">
+      <!-- <div><a class="nav-item nav-link" href="/users/login">LOGIN</a>
         </div>
         <div class="search">
         <textarea class="search" placeholder="search..."></textarea>
@@ -23,14 +33,17 @@
 
     </div> -->
 
-
-    <% if (!user_email) { %>
+      <% if (!user_email) { %>
       <div><a class="nav-item nav-link" href="/users/login">LOGIN</a></div>
       <div class="search">
         <textarea class="search" placeholder="search..."></textarea>
-        <button class="btn-submit"  type = "submit">Submit</button>
-        <% } else { %>
-          <form class="form-inline" action="/logout" method="POST"></form>
+        <button class="btn-submit" type="submit">Submit</button>
+        <% } else if (user_email === "ally@123.com") { %>
+        <h2>HELLO</h2><form class="form-inline" action="/logout" method="POST"></form>
+        <div>Logged in as ADMIN: <%=user_email%></div>
+        <div><a class="nav-item nav-link" href="/users/logout">Logout</a></div>
+        <%} else {%>
+        <form class="form-inline" action="/logout" method="POST"></form>
         <div>Logged in as: <%=user_email%></div>
         <div><a class="nav-item nav-link" href="/users/logout">Logout</a></div>
         <div class="search">
@@ -38,8 +51,7 @@
           <button class="btn-submit">Submit</button>
           <% } %>
         </div>
-        </div>
+      </div>
     </div>
   </nav>
 </header>
-
