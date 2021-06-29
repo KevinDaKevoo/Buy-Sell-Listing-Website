@@ -60,9 +60,17 @@ app.use("/admin", adminRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  const user_email = req.session.user_email;
-  const templateVars = { user_email };
-  res.render("index", templateVars);
+  db.query(`SELECT * FROM products;`)
+    .then((data) => {
+      const products = data.rows;
+      const user_email = req.session.user_email;
+      const templateVars = { user_email, products };
+      console.log("this is templateVars", templateVars);
+      res.render("index", templateVars);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
 });
 
 app.listen(PORT, () => {

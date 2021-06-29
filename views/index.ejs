@@ -16,18 +16,34 @@
     <main style="margin: 1em">
       <h1 class = "featured-title">Featured Deals right now!</h1>
       <section class = "featured-container">
+        <div class = "featured-products-1"></div>
         <thead >
+          <%for (let product of products) {%>
+            <%if (product.id <= 2) {%>
+            <div>
+              <img class="featured-image" src="<%= product.photo_1 %>" alt="Card image cap">
+              <tr>
+                <th><%= product.name %></th>
+                <th><p>$<%= product.price %></p></th>
+                <th><%= product.description %></th>
+                </tr>
+              </div>
+              <% } %>
+            <%}%>
+              <h2>Not A Featured Deal</h2>
+            <%for (let product of products) {%>
+              <%if (product.id > 2) {%>
+              <div>
+                <img class="featured-image" src="<%= product.photo_1 %>" alt="Card image cap">
+                <tr>
+                  <th><%= product.name %></th>
+                  <th><p>$<%= product.price %></p></th>
+                  <th><%= product.description %></th>
+                  </tr>
+                </div>
+                <% } %>
+              <%}%>
 
-          <div class = "featured-products-1">
-          <tr>
-            <img class = "featured-img" src = 'https://i.pcmag.com/imagery/reviews/038Dr5TVEpwIv8rCljx6UcF-14.1588802180.fit_scale.size_220x220.jpg'>
-            <table class = "cta-buttons">
-            <th scope="col"> <form class = "form" method = "POST" action = "/favorites"> <button type = "submit" class = 'btn-favorite'>Add to Favorites</button>
-            </form></th>
-            <th scope="col"><form class = "form" method = "GET" action = "/products/product:id"><button class = 'btn-product-info'>Check it out!</button>
-            </form></th>
-            <th scope="col"><form class = "form" method = "GET" action = "/new_message"><button class = 'btn-message'>Contact Seller</button></form></th>
-          </tr>
         </thead>
         <tbody>
 
