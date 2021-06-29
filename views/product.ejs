@@ -14,15 +14,17 @@
   <body>
     <%- include("_header") %>
     <main style="margin: 1em">
-      <h1 class = "product-title">Product title</h1>
+      <h1 class = "product-title"><%= product.name %></h1>
       <section class = "product-container">
         <thead >
           <div class = "product-info">
-            <label> product description</label>
+            <label> Product Description:</label>
+            <p><%= product.description %></p>
+            <p> <b>$<%= product.price %></b></p>
           <tr>
-            <img class = "featured-img" src = 'https://i.pcmag.com/imagery/reviews/038Dr5TVEpwIv8rCljx6UcF-14.1588802180.fit_scale.size_220x220.jpg'>
+            <img class = "featured-img" src = '<%= product.photo_1 %>'>
             <table class = "cta-buttons">
-            <th scope="col"> <form class = "form" method = "POST" action = "/favorites"> <button type = "submit" class = 'btn-favorite'>Add to Favorites</button>
+              <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
             </form></th>
             <th scope="col"><form class = "form" method = "GET" action = "/new_message"><button class = 'btn-message'>Contact Seller</button></form></th>
           </tr>

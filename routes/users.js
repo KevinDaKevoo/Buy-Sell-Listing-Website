@@ -100,7 +100,7 @@ WHERE favorite_products.user_id= $1;`;
   });
 
   router.post("/favourite/:favorite_product_id/delete", (req, res) => {
-    console.log(req.params)
+    console.log(req.params);
     console.log("in the delete fav route");
     const sqlQuery = `DELETE FROM favorite_products WHERE id = $1;`;
     console.log("this is req params ", req.params.favorite_product_id);
@@ -116,14 +116,30 @@ WHERE favorite_products.user_id= $1;`;
       });
   });
 
+  router.get("/product/:product_id", (req, res) => {
+    const product_id = req.params.product_id;
+    const sqlQuery = `SELECT * FROM products WHERE id = $1`;
+    const values = [product_id];
+    db.query(sqlQuery, values)
+      .then((data) => {
+        console.log("in the .then of the promise");
+        const user_email = req.session.user_email;
+        const product = data.rows[0];
+        console.log("this is data:", product);
+        const templateVars = { product: product, user_email };
+        res.render("product", templateVars);
+      })
+      .catch((err) => {
+        res.status(500).json({ err: err.message });
+      });
+  });
+
   return router;
 };
 
 /*
 
-router.post("/product/:product_id", (req, res) => {
 
-});
 
 router.get("/message/:user_id", (req, res) => {
   res.render("message")
