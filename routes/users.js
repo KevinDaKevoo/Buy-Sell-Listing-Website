@@ -49,17 +49,16 @@ module.exports = (db) => {
         } else {
           res.send("Unauth access");
         }
-      }) 
+      })
       .catch((err) => {
         res.status(500).json({ err: err.message });
       });
 
-    // return res.redirect("/");
   });
 
   router.get("/logout", (req, res) => {
     req.session = null;
-    res.redirect("/");
+    res.redirect("/users/login");
   });
 
   return router;

@@ -32,6 +32,7 @@
         <% } else { %>
           <form class="form-inline" action="/logout" method="POST"></form>
         <div>Logged in as: <%=user_email%></div>
+        <div><a class="nav-item nav-link" href="/users/logout">Logout</a></div>
         <div class="search">
           <textarea class="search" placeholder="search..."></textarea>
           <button class="btn-submit">Submit</button>
