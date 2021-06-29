@@ -53,7 +53,6 @@ module.exports = (db) => {
       .catch((err) => {
         res.status(500).json({ err: err.message });
       });
-
   });
 
   router.get("/logout", (req, res) => {
@@ -61,35 +60,86 @@ module.exports = (db) => {
     res.redirect("/users/login");
   });
 
+  router.post("/product/:product_id/favorites", (req, res) => {
+    //extract product.id from url
+    const productId = req.params.product_id;
+    console.log("This is productId", productId);
+    //get user.id from cookies
+    // const userId = req.session.user_id
+    const userId = 1;
+    //create sql query to insert favourite into database
+    const sqlQuery = `INSERT INTO favorite_products (product_id, user_id) VALUES ($1, $2)`;
+    const values = [productId, userId];
+    db.query(sqlQuery, values)
+      .then((data) => {
+        console.log("ADDED TO FAVS:", data);
+        res.redirect("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    //redirect to "/"
+    // res.render("product")
+  });
+
+  router.get("/favourite", (req, res) => {
+    const sqlQuery = `SELECT favorite_products.id AS favorite_id, products.photo_1, products.name, products.price, products.id AS product_id FROM favorite_products INNER JOIN products ON products.id = favorite_products.product_id
+WHERE favorite_products.user_id= $1;`;
+    const values = [1];
+    db.query(sqlQuery, values)
+      .then((data) => {
+        console.log("this is data rows: ", data.rows);
+        const user_email = req.session.user_email;
+        const templateVars = { favorites: data.rows, user_email };
+        res.render("favourite", templateVars);
+      })
+      .catch((error) => {
+        console.log("this is error:", error);
+      });
+    // res.render("favourite", templateVars)
+  });
+
+  router.post("/favourite/:favorite_product_id/delete", (req, res) => {
+    console.log(req.params)
+    console.log("in the delete fav route");
+    const sqlQuery = `DELETE FROM favorite_products WHERE id = $1;`;
+    console.log("this is req params ", req.params.favorite_product_id);
+    const values = [req.params.favorite_product_id];
+    db.query(sqlQuery, values)
+      .then((data) => {
+        console.log("DATA IS HERE");
+        console.log("Query done");
+        res.redirect("/users/favourite/");
+      })
+      .catch((err) => {
+        res.status(500).json({ err: err.message });
+      });
+  });
+
   return router;
 };
 
 /*
-router.get("/product/:product_id", (res, req) => {
-  res.render("product")
-});
 
-router.post("/product/:product_id", (res, req) => {
+router.post("/product/:product_id", (req, res) => {
 
 });
 
-router.get("/message/:user_id", (res, req) => {
+router.get("/message/:user_id", (req, res) => {
   res.render("message")
 });
 
-router.get("/product/:product_id/message", (res, req) => {
+router.get("/product/:product_id/message", (req, res) => {
   res.render("new_message")
 });
 
-router.post("/product/:product_id/message", (res, req) => {
+router.post("/product/:product_id/message", (req, res) => {
 
 });
 
-router.get("/favourite/:user_id", (res, req) => {
-  res.render("favourite")
-});
+r
 
-router.post("/products/favourite/:user_id/:product_id", (res, req) => {
+router.post("/products/favourite/:user_id/:product_id", (req, res) => {
 
 });
 

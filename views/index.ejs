@@ -25,7 +25,10 @@
               <tr>
                 <th><%= product.name %></th>
                 <th><p>$<%= product.price %></p></th>
-                <th><%= product.description %></th>
+                <th><form method = "GET" action = "/users/product/<%=product.id %>"><button type="submit" class="btn btn-primary">More Info</button></form></th>
+
+                <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
+
                 </tr>
               </div>
               <% } %>
@@ -37,8 +40,10 @@
                 <img class="featured-image" src="<%= product.photo_1 %>" alt="Card image cap">
                 <tr>
                   <th><%= product.name %></th>
-                  <th><p>$<%= product.price %></p></th>
-                  <th><%= product.description %></th>
+                  <th><p>$<%= product.price %></p>
+                    <th><form method = "GET" action = "/users/product/<%=product.id%>"><button type="submit" class="btn btn-primary">More Info</button></form></th>
+                    <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
+
                   </tr>
                 </div>
                 <% } %>
@@ -46,7 +51,6 @@
 
         </thead>
         <tbody>
-
         </tbody>
       </div>
     </section>
