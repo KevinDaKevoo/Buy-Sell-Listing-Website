@@ -42,9 +42,11 @@ module.exports = (db) => {
     return db
       .query(sqlQuery, values)
       .then((data) => {
+        // console.log(data.rows)
         const user = data.rows[0];
         if (user) {
           req.session.user_email = user.email;
+          req.session.user_id = user.id;
           res.redirect("/");
         } else {
           res.send("Unauth access");
@@ -66,7 +68,7 @@ module.exports = (db) => {
     console.log("This is productId", productId);
     //get user.id from cookies
     // const userId = req.session.user_id
-    const userId = 1;
+    const userId = req.session.user_id;
     //create sql query to insert favourite into database
     const sqlQuery = `INSERT INTO favorite_products (product_id, user_id) VALUES ($1, $2)`;
     const values = [productId, userId];
@@ -83,14 +85,17 @@ module.exports = (db) => {
   });
 
   router.get("/favourite", (req, res) => {
-    const sqlQuery = `SELECT favorite_products.id AS favorite_id, products.photo_1, products.name, products.price, products.id AS product_id FROM favorite_products INNER JOIN products ON products.id = favorite_products.product_id
+    const sqlQuery = `SELECT favorite_products.id AS favorite_id, products.photo_1, products.name, products.price, products.id AS product_id, user_id FROM favorite_products INNER JOIN products ON products.id = favorite_products.product_id
 WHERE favorite_products.user_id= $1;`;
-    const values = [1];
+
+    const values = [req.session.user_id];
+    // console.log("this is req.session", req.session)
+    console.log("this is values in the favourtie get route", values);
     db.query(sqlQuery, values)
       .then((data) => {
-        console.log("this is data rows: ", data.rows);
         const user_email = req.session.user_email;
-        const templateVars = { favorites: data.rows, user_email };
+        const user_id = req.session.user_id;
+        const templateVars = { favorites: data.rows, user_id, user_email };
         res.render("favourite", templateVars);
       })
       .catch((error) => {

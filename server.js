@@ -63,6 +63,7 @@ app.get("/", (req, res) => {
   db.query(`SELECT * FROM products;`)
     .then((data) => {
       const products = data.rows;
+      console.log(data.rows)
       const user_email = req.session.user_email;
       const templateVars = { user_email, products };
       console.log("this is templateVars", templateVars);

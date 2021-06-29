@@ -15,7 +15,6 @@
     <%- include("_header") %>
     <div class="fav-product">
       <%for (let favorite of favorites) {%>
-        <%if (user_email) {%>
         <tr>
           <img class="featured-image" src="<%= favorite.photo_1%>" alt="Card image cap">
           <th><%= favorite.name %></th>
@@ -23,7 +22,6 @@
           <th scope="col"><form method="POST" action="/users/favourite/<%=favorite.favorite_id%>/delete"><button type = "submit" class = 'btn-delete'>Delete This .. <%=favorite.favorite_id%></button>
           </form></th>
         </tr>
-        <% } %>
       <% } %>
     </div>
   </body>
