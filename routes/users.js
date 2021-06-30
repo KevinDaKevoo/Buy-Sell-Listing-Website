@@ -144,10 +144,28 @@ WHERE favorite_products.user_id= $1;`;
   });
 
   router.get("/product/:product_id/message", (req, res) => {
+    const user_email = req.session.user_email;
+    const userId = req.session.user_id;
+    const productId = req.params.product_id;
+    console.log(user_email, userId, productId);
+    const sqlQuery = `SELECT * FROM products WHERE id = $1;`;
+    const values = [productId];
+    db.query(sqlQuery, values)
+      .then((data) => {
+        const product = data.rows[0];
+        const templateVars = { user_email, userId, product };
+        console.log("this is data", data.rows);
+        res.render("new_message", templateVars);
+      })
+      .catch((err) => {
+        res.status(500).json({ err: err.message });
+      });
+
     // console.log(req.params.product_id);
     // // console.log(req.session)
     // res.render("new_message")
-    // const user_email = req.session.user_email;
+
+    // console.log(user_email)
     // const userId = req.session.user_id;
     //   const productId = req.params.product_id;
     //   console.log("THIS IS USERID AND PRODUCTID", userId, productId);
@@ -157,6 +175,7 @@ WHERE favorite_products.user_id= $1;`;
     //     .then((data) => {
     //       console.log("data outside userID:", data);
     //       if (userId) {
+    //         const user_email = req.session.user_email;
     //         console.log("DATA ROWS: in product message get route ", data);
     //         const product = data.rows[0];
     //         const templateVars = { user_email, userId, product };
@@ -173,27 +192,66 @@ WHERE favorite_products.user_id= $1;`;
   router.post("/product/:product_id/message", (req, res) => {
     const sqlQuery = `INSERT INTO messages (user_id, content, product_id) VALUES ($1, $2, $3);`;
     const userId = req.session.user_id;
-    const message = req.body;
+    const message = req.body.name;
+
+    console.log("this is message:", message);
     const productId = req.params.product_id;
+    console.log("this is the productId", productId);
     const values = [userId, message, productId];
     db.query(sqlQuery, values)
       .then((data) => {
-        res.redirect("/product/:product_id/message");
+        res.redirect("/");
       })
       .catch((err) => {
         res.status(500).json({ err: err.message });
       });
-    res.redirect("/");
   });
 
+  router.get("/messages", (req, res) => {
+    const sqlQuery = `SELECT  content, products.seller_id, products.name, products.price AS price, user_id, users.name AS user_name
+     FROM messages
+     JOIN products ON products.id = messages.product_id
+     JOIN users ON users.id = messages.user_id
+     WHERE user_id = $1;`;
+    const userId = req.session.user_id;
+    const values = [userId];
+    const user_email = req.session.user_email;
+    db.query(sqlQuery, values)
+      .then((data) => {
+        console.log(
+          "THIS IS DATA ROWS INSIDE THE GET MESSAGE ROUTE",
+          data.rows
+        );
+        const messages = data.rows;
+        const templateVars = { user_email, userId, messages };
+        res.render("message", templateVars);
+      })
+      .catch((err) => {
+        res.status(500).json({ err: err.message });
+      });
+  });
+
+  router.get("/messages/reply", (req, res) => {
+    const sqlQuery = `SELECT users.name, products.name AS product_name, products.seller_id AS seller_id, FROM messages
+    JOIN users ON users.id = messages.user_id
+    JOIN products ON products.id = messages.product_id
+    WHERE user_id = $1 products.seller_id = $2`
+    res.render("negotiations");
+  });
   return router;
 };
+
+//Jquery
 
 /*
 
 
 /* SELECT products.name, products.seller_id, products.price, products.description, products.photo_1, messages.* from messages JOIN products ON products.id = product_id WHERE user_id = 2 AND product_id = 12;
 
+
+sqlQuery FILTER FOR SEARCHING by type and price >>
+SELECT products.name as name, products.price as price, products.description as description FROM product_types JOIN products on products.type_id = product_types.id
+WHERE products.price > 50 and products.price < 10000
 
 INSERT INTO message (user_id, content, product_id) VALUES ($1, $2, $3)
 
@@ -210,6 +268,10 @@ router.post("/products/favourite/:user_id/:product_id", (req, res) => {
 
 });
 SELECT products.*, messages.* FROM products INNER JOIN messages ON messages.product_id = products.id;
+
+ select users.name AS user_name, content, product_id, products.seller_id from messages LEFT JOIN users on users.id = messages.user_id JOIN products on products.id = product_id;
+
+
 
 
 */
