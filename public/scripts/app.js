@@ -11,9 +11,15 @@
 
 $(document).ready(function () {
   $("#reply-message-box").hide();
+  $("#message-admin-box").hide();
 
   $("#reply-message-button").click(function (event) {
     event.preventDefault();
     $("#reply-message-box").show();
+  });
+
+  $("#message-admin").click(function (event) {
+    event.preventDefault();
+    $("#message-admin-box").show();
   });
 });
