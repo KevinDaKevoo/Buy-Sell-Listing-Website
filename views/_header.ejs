@@ -35,7 +35,7 @@
 
       <% if (!user_email) { %>
       <div><a class="nav-item nav-link" href="/users/login">LOGIN</a></div>
-      <div class="search">
+      <!-- <div class="search">
         <form class="filter-button" method="POST" action="/users/filter">
           <div class="filter-input">
             <input
@@ -52,8 +52,8 @@
             />
             <button class="btn-submit">Submit</button>
           </div>
-        </form>
-        <button class="btn-filter" type="submit">Submit</button>
+        </form> -->
+        <!-- <button class="btn-filter" type="submit">Submit</button> -->
         <% } else if (user_email === "ally@123.com") { %>
         <h2>HELLO</h2>
         <form class="form-inline" action="/logout" method="POST"></form>
@@ -78,7 +78,7 @@
                 name="maxprice"
                 placeholder="maxprice"
               />
-              <button class="btn-submit">Submit</button>
+              <button class="btn-submit">Search</button>
             </div>
           </form>
           <button class="btn-filter">Filter By Price</button>
