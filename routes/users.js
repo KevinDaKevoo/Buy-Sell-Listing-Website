@@ -139,30 +139,77 @@ WHERE favorite_products.user_id= $1;`;
       });
   });
 
+  router.get("/message/:user_id", (req, res) => {
+    res.render("message");
+  });
+
+  router.get("/product/:product_id/message", (req, res) => {
+    // console.log(req.params.product_id);
+    // // console.log(req.session)
+    // res.render("new_message")
+    // const user_email = req.session.user_email;
+    // const userId = req.session.user_id;
+    //   const productId = req.params.product_id;
+    //   console.log("THIS IS USERID AND PRODUCTID", userId, productId);
+    //   const sqlQuery = `SELECT products.name AS product_name, products.seller_id AS seller_id, products.price AS product_price, products.description AS product_description, products.photo_1, messages.* from messages JOIN products ON products.id = product_id WHERE user_id = 2 AND product_id = 12;`;
+    //   const values = [userId, productId];
+    //   db.query(sqlQuery, values)
+    //     .then((data) => {
+    //       console.log("data outside userID:", data);
+    //       if (userId) {
+    //         console.log("DATA ROWS: in product message get route ", data);
+    //         const product = data.rows[0];
+    //         const templateVars = { user_email, userId, product };
+    //         res.render("new_message", templateVars);
+    //       } else {
+    //         res.send("Please login as a user!");
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       res.status(500).json({ err: err.message });
+    //     });
+  });
+
+  router.post("/product/:product_id/message", (req, res) => {
+    const sqlQuery = `INSERT INTO messages (user_id, content, product_id) VALUES ($1, $2, $3);`;
+    const userId = req.session.user_id;
+    const message = req.body;
+    const productId = req.params.product_id;
+    const values = [userId, message, productId];
+    db.query(sqlQuery, values)
+      .then((data) => {
+        res.redirect("/product/:product_id/message");
+      })
+      .catch((err) => {
+        res.status(500).json({ err: err.message });
+      });
+    res.redirect("/");
+  });
+
   return router;
 };
 
 /*
 
 
+/* SELECT products.name, products.seller_id, products.price, products.description, products.photo_1, messages.* from messages JOIN products ON products.id = product_id WHERE user_id = 2 AND product_id = 12;
 
-router.get("/message/:user_id", (req, res) => {
-  res.render("message")
-});
+
+INSERT INTO message (user_id, content, product_id) VALUES ($1, $2, $3)
+
+insert into messages (user_id, content, product_id) VALUES (1, 'hello is this sold yet?', 12)
 
 router.get("/product/:product_id/message", (req, res) => {
   res.render("new_message")
 });
 
-router.post("/product/:product_id/message", (req, res) => {
-
-});
 
 r
 
 router.post("/products/favourite/:user_id/:product_id", (req, res) => {
 
 });
+SELECT products.*, messages.* FROM products INNER JOIN messages ON messages.product_id = products.id;
 
 
 */

@@ -31,6 +31,7 @@
                   <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn btn-primary">Sold!</button></form></th>
                   <% } else {%>
                     <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
+                    <th scope="col"><form class = "form" method = "GET" action = "/users/product/<%=product.id%>/message"><button class = 'btn-message'>Contact Seller</button></form></th>
                   <% } %>
                 </tr>
               </div>
@@ -50,6 +51,7 @@
                       <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn btn-primary">Sold!</button></form></th>
                       <% } else {%>
                         <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
+                        <th scope="col"><form class = "form" method = "GET" action = "/users/product/<%=product.id%>/message"><button class = 'btn-message'>Contact Seller</button></form></th>
                       <% } %>
                   </tr>
                 </div>
