@@ -208,13 +208,16 @@ WHERE favorite_products.user_id= $1;`;
   });
 
   router.get("/messages", (req, res) => {
-    const sqlQuery = `SELECT  content, products.seller_id, products.name, products.price AS price, user_id, users.name AS user_name
+    const sqlQuery = `SELECT  content, products.id AS product_id, products.seller_id, products.name, products.price AS price, user_id, users.name AS user_name
      FROM messages
      JOIN products ON products.id = messages.product_id
      JOIN users ON users.id = messages.user_id
      WHERE user_id = $1;`;
+
+
     const userId = req.session.user_id;
     const values = [userId];
+    console.log("THIS IS REQ.SESSION IN GET /MESSAGE",req.session)
     const user_email = req.session.user_email;
     db.query(sqlQuery, values)
       .then((data) => {
@@ -231,23 +234,61 @@ WHERE favorite_products.user_id= $1;`;
       });
   });
 
-  router.get("/messages/reply", (req, res) => {
-    const sqlQuery = `SELECT users.name, products.name AS product_name, products.seller_id AS seller_id, FROM messages
-    JOIN users ON users.id = messages.user_id
-    JOIN products ON products.id = messages.product_id
-    WHERE user_id = $1 products.seller_id = $2`
-    res.render("negotiations");
+  // router.get("/messages/reply", (req, res) => {
+  //   const sqlQuery = `SELECT users.name, products.name AS product_name, products.seller_id AS seller_id, FROM messages
+  //   JOIN users ON users.id = messages.user_id
+  //   JOIN products ON products.id = messages.product_id
+  //   WHERE user_id = $1 products.seller_id = $2`;
+  //   res.render("negotiations");
+  // });
+
+  router.post("/messages/admin", (req, res) => {
+    console.log("THIS IS REQ BODY IN MESSAGES", req.body);
+    console.log("THIS IS RES IN MESSAGES", res);
+    console.log("THIS IS REQ PARAMS", req.params);
+    // const sqlQuery =``;
+    // const values = [];
+    // db.query(sqlQuery, values)
+    //   .then((data) => {
+
+    //   })
+    //   .catch((err) => {
+    //     res.status(500).json({ err: err.message });
+    //   });
   });
+
+  router.post("/product/reply", (req, res) => {
+    const sqlQuery = `INSERT INTO messages (user_id, content, product_id) VALUES ($1, $2, $3);`;
+    console.log("I am being injected", req.body);
+    const userId = req.session.user_id;
+    const message = req.body.name;
+
+    console.log("this is message:", message);
+    const productId = req.body.contactId;
+    console.log("this is the productId", productId);
+    const values = [userId, message, productId];
+    db.query(sqlQuery, values)
+      .then((data) => {
+        console.log("I got here?", data.rows);
+        res.redirect("/users/messages");
+      })
+      .catch((err) => {
+        res.status(500).json({ err: err.message });
+      });
+  });
+
   return router;
 };
 
-//Jquery
+
 
 /*
 
 
 /* SELECT products.name, products.seller_id, products.price, products.description, products.photo_1, messages.* from messages JOIN products ON products.id = product_id WHERE user_id = 2 AND product_id = 12;
 
+
+INSERT INTO messages (user_id, product_id) VALUES ($1, $2);
 
 sqlQuery FILTER FOR SEARCHING by type and price >>
 SELECT products.name as name, products.price as price, products.description as description FROM product_types JOIN products on products.type_id = product_types.id
