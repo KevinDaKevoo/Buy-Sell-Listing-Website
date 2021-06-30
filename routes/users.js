@@ -214,10 +214,9 @@ WHERE favorite_products.user_id= $1;`;
      JOIN users ON users.id = messages.user_id
      WHERE user_id = $1;`;
 
-
     const userId = req.session.user_id;
     const values = [userId];
-    console.log("THIS IS REQ.SESSION IN GET /MESSAGE",req.session)
+    console.log("THIS IS REQ.SESSION IN GET /MESSAGE", req.session);
     const user_email = req.session.user_email;
     db.query(sqlQuery, values)
       .then((data) => {
@@ -277,10 +276,40 @@ WHERE favorite_products.user_id= $1;`;
       });
   });
 
+  router.post("/filter", (req, res) => {
+    let sqlQuery = `SELECT products.id, products.name as product_name, products.price AS product_price, products.description as description, products.photo_1 as product_photo FROM product_types JOIN products ON products.type_id = product_types.id`;
+    const min = req.body.minprice;
+    const max = req.body.maxprice;
+    const values = [];
+    if (min && !max) {
+      sqlQuery += ` WHERE products.price > $1 ORDER BY products.price;`;
+      values.push(min);
+    } else if (!min && max) {
+      sqlQuery += ` WHERE products.price < $1 ORDER BY products.price;`;
+      values.push(max);
+    } else if (!min && !max){
+      sqlQuery += ` WHERE products.price > 0 ORDER BY products.price;`
+    } else {
+      sqlQuery += ` WHERE products.price > $1 and products.price < $2 ORDER BY products.price;`;
+      values.push(min);
+      values.push(max);
+    };
+
+    const user_email = req.session.user_email;
+    const userId = req.session.user_id;
+    db.query(sqlQuery, values)
+      .then((data) => {
+        const products = data.rows;
+        const templateVars = { userId, user_email, products };
+        res.render("filter", templateVars);
+      })
+      .catch((err) => {
+        res.status(500).json({ err: err.message });
+      });
+  });
+
   return router;
 };
-
-
 
 /*
 
