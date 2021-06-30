@@ -16,25 +16,46 @@
     <h1>Messages</h1>
     <%for (let message of messages) {%>
     <div class="message">
-      <label>BuyerId: <%=message.user_id%></label>
-      <label>BuyerName: <%=message.user_name%></label>
-      <label>Product Price: <%=message.price%></label>
-      <label>SellerId: <%=message.seller_id%></label>
-      <label>Product Name: <%=message.name%></label>
-      <label>Content: <%=message.content%></label>
+      <label><b>BuyerId:</b> <%=message.user_id%></label>
+      <label><b>BuyerName: </b><%=message.user_name%></label>
+      <label><b>Product Price:</b> <%=message.price%></label>
+      <label><b>SellerId:</b> <%=message.seller_id%></label>
+      <label><b>Product Name:</b> <%=message.name%></label>
+      <label><b>Message:</b> <%=message.content%></label>
+      <label><b>Product ID:</b> <%=message.product_id%></label>
+      <label>  <a href = "http://localhost:8080/users/product/<%=message.product_id%>?"> Checkout this product</a></label>
       <% } %>
     </div>
     <div>
-<button class="reply-message-button" id="reply-message-button">Reply A Message</button>
+
+<button class="reply-message-button" id="reply-message-button">Reply To A Message</button>
 <div class="reply-message-box" id="reply-message-box">
-  <p> Select Seller Id</p>
+  <p> Select Seller Id To Send A Message To</p>
+  <form method="POST" action="/users/product/reply">
   <select name="contactId" id="contactId">
+    <label for="sellerId">Choose a seller:</label>
+      <!-- not sure how to implement this post action to get the message.proudctid to redirect to new messages -->
+      <%for (let message of messages) {%>
+      <option value="<%=message.product_id%>"><%=message.seller_id%></option>
+        <%}%>
+  </select>
+  <input type="text" id="name" name="name" /><br />
+<button class="btn-message" id="send-admin-button">Submit</button></form>
+      </div>
+
+
+
+  <button class="message-admin" id="message-admin">Message Admin</button>
+<div class="message-admin-box" id="message-admin-box">
+  <p> Send Message To The Admin</p>
+  <!-- <select name="contactId" id="contactId">
     <%for (let message of messages) {%>
       <option value="<%=message.seller_id%>"><%=message.seller_id%></option>
         <%}%>
-  </select>
-<textarea class="reply-message" id="reply-message"></textarea>
-  <button class="btn-message" id="reply-button">Submit</button>
+  </select> -->
+  <!-- WHHHHYYY LOL-->
+<form method="POST" action="/users/messages/admin"><textarea class="reply-message" id="reply-message"></textarea>
+<input type ="submit"></form>
       </div>
     <!-- </body>
 </html> -->
