@@ -1,5 +1,7 @@
 // See: https://sass-lang.com/
+// @media on screen and (min-width: 1024px) {
 
+// }
 body {
   background-color: lightsteelblue;
 
@@ -8,74 +10,19 @@ body {
   }
 }
 
-
-.featured-title {
-  display: flex;
-  justify-content: center;
-}
-
-header {
-  background-color: steelblue;
-  height: 80px;
-}
-nav {
-  display: flex;
-  justify-content: space-between;
-  background-color: steelblue;
-  padding: 10px;
+.header-main {
   width: 100%;
-  position: fixed;
-}
-.nav {
+  background-color: rgb(216, 198, 176);
   display: flex;
-  align-items: center;
-}
-.title {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  padding-left: 20em;
-  padding-right: 13em;
-  justify-content: center;
-  align-items: center;
-}
-.navbar-nav {
-  display:flex;
-  align-items: flex-end;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.search {
-  display: flex;
-  align-items: flex-end;
-}
-
-.search textarea {
-  height: 25px;
-  width: 150px;
-}
-.featured-products-1 {
-display: flex;
-flex-direction: column;
-width: 50%;
-justify-content: flex-start;
-margin: 10px;
-}
-
-
-.featured-container {
-  display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-}
-.cta-buttons {
-  margin-top: 7px;
-}
-
-.btn-favorite {
-font-family: monospace;
-background-color: greenyellow;
+  justify-content: space-between;
+  align-items: centre;
 }
 
 
+.title {
+color: red;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-size: 2em;
+}

@@ -1,0 +1,11 @@
+header {
+  display: flex;
+}
+
+nav {
+  display: flex;
+}
+
+nav div {
+  display: flex;
+}
