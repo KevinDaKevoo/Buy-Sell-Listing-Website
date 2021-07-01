@@ -2,6 +2,11 @@
 // @media on screen and (min-width: 1024px) {
 
 // }
+
+html {
+  font-family: "Times New Roman", Times, serif;
+}
+
 body {
   background-color: lightsteelblue;
 
@@ -14,15 +19,212 @@ body {
   width: 100%;
   background-color: rgb(216, 198, 176);
   display: flex;
-  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: centre;
+  padding: 20px;
+  height: 150px;
 }
 
-
 .title {
-color: red;
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-font-size: 2em;
+  color: rgb(138, 103, 103);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2em;
+}
+
+nav a:link,
+nav a:visited {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: center;
+  background-color: lightsteelblue;
+  border: 2px solid steelblue;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+}
+nav a:hover {
+  background-color: black;
+  color: orange;
+}
+
+.nav {
+  display: flex;
+  margin: 2em;
+}
+
+nav .navbar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featured-image {
+  height: auto;
+  width: 25%;
+  border-radius: 20%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.featured-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.featured-container div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-content: stretch;
+  margin: 1em;
+}
+
+.not-featured {
+  display: flex;
+  flex-direction: row;
+}
+
+.featured-title {
+  color: red;
+  font-size: 40px;
+  display: flex;
+  align-content: stretch;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.not-featured-title {
+  color: blue;
+  font-size: 40px;
+  display: flex;
+  align-content: stretch;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-name {
+  color: blue;
+  font-family: monospace;
+  font-size: 2em;
+}
+
+.product-card {
+  border-color: black;
+  border-radius: 1em;
+  background-color: rgba(224, 174, 98, 0.3);
+}
+
+.btn-filter {
+  background-color: lightsteelblue;
+  border: 2px solid steelblue;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.btn-filter:hover {
+  background-color: black;
+  color: white;
+}
+
+.filter-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.product-buttons {
+  background-color: burlywood;
+  border-radius: 20%;
+  font-weight: 100;
+  cursor: pointer;
+  height: 50px;
+  width: auto;
+}
+
+.product-buttons:hover {
+  background-color: rgb(124, 77, 15);
+  border-radius: 20%;
+  font-weight: 100;
+  cursor: pointer;
+  color: white;
+}
+
+.not-featured {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-content: stretch;
+  margin: 1em;
+  width: 100%;
+}
+
+.product-card-nf {
+  display: flex;
+  flex-direction: column;
+  border-color: black;
+  border-radius: 1em;
+  background-color: rgba(224, 174, 98, 0.3);
+  justify-content: space-evenly;
+  align-items: center;
+  width: 40%;
+}
+.btn-btn-primary {
+  background-color: burlywood;
+  border-radius: 20%;
+  font-weight: 100;
+  cursor: pointer;
+  height: 50px;
+  width: auto;
+}
+.btn-btn-primary:hover {
+  background-color: rgb(124, 77, 15);
+  border-radius: 20%;
+  font-weight: 100;
+  cursor: pointer;
+  color: white;
+}
+.nf-image {
+  height: auto;
+  width: 50%;
+  border-radius: 20%;
+}
+
+.favorites-container .product-card {
+  margin: 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 20px;
+}
+
+.favorites-container .product-price {
+  color: blue;
+  font-family: monospace;
+  font-size: 1.5em;
+}
+
+button {
+
 }
