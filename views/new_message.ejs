@@ -15,23 +15,27 @@
     <%- include("_header") %>
     <main style="margin: 1em">
       <h1 class = "new-message-title">New Message</h1>
-      <section class = "new-message">
-        <div class = "message-area">
+      <section class = "product-card-page">
 
-          <h3><%=product.name%></h3>
-          <img src="<%=product.photo_1%>">
-          <h2> <%= product.description %></h2>
-          <h2> $<%= product.price %></h2>
+          <div class="product-name">
+          <h3><%=product.name%></h3> </div>
+          <img class = "featured-image" src="<%=product.photo_1%>">
+
+          <div class="product-description">
+            <label><b>Product Description: </b></label>
+            <%= product.description %></div>
+            <div class="product-price">
+          <h2>Price: 💲<%= product.price %></h2></div>
           <h2> <b>Seller ID: <%= product.seller_id %></b></h2>
           <form method="POST" action="/users/product/<%=product.id%>/message">
             <!-- might not work -->
             <br />
             <label for="name">Send a message to the seller!</label><br />
-            <input type="text" id="name" name="name" /><br />
-            <th scope="col"><button class = 'btn-message'>Submit</button></th>
+            <input class="message-seller" type="text" id="name" name="name"/><br />
+            <th scope="col"> <center><button class = 'btn-btn-primary'>Message Seller</button></center></th>
 
             </form>
-        </div>
+
       </div>
   <!-- </body>
 </html> -->

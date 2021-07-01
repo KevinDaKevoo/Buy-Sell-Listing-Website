@@ -60,7 +60,7 @@ app.use("/admin", adminRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  db.query(`SELECT * FROM products;`)
+  db.query(`SELECT * FROM products ORDER BY id DESC;`)
     .then((data) => {
       const products = data.rows;
       console.log(data.rows)

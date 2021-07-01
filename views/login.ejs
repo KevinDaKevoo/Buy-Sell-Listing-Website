@@ -12,22 +12,60 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
     <title>Login Page</title>
-    <%- include('_header') %>
   </head>
   <body>
+    <header class="login-page-header">
+      <nav class="header-main-login">
+        <%if (user_email === "ally@123.com") { %>
+        <div class="nav">
+          <a class="nav-item nav-link" href="/">Home</a>
+          <a class="nav-item nav-link" href="/admin/messages">Messages</a>
+          <a class="nav-item nav-link" href="/admin/add_listing">Add Listing</a>
+        </div>
+        <div class="login-title">
+          <h3>Fake Kijiji</h3>
+        </div>
+        <%} else {%>
+        <div class="nav">
+          <a class="nav-item nav-link" href="/">Home</a>
+        </div>
+        <div class="login-title">
+          <h3>Fake Kijiji</h3>
+        </div>
+        <% } %>
+        <div class="navbar-nav">
+
+          <% if (!user_email) { %>
+          <div><a class="nav-item nav-link" href="/users/login">LOGIN</a></div>
+            <% } else if (user_email === "ally@123.com") { %>
+            <h2>HELLO</h2>
+            <form class="form-inline" action="/logout" method="POST"></form>
+            <div>Logged in as ADMIN: <%=user_email%></div>
+            <div><a class="logout" href="/users/logout">Logout</a></div>
+            <%} else {%>
+            <form class="form-inline" action="/logout" method="POST"></form>
+            <div>Logged in as: <%=user_email%></div>
+            <div><a class="logout" href="/users/logout">Logout</a></div>
+           <% } %>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
     <h1><center>Login Here</center></h1>
     <div>
-      <form action="/users/login" method="POST">
-        <label>E-mail: </label>
-        <br />
+      <form class = "login-form" action="/users/login" method="POST">
+        <label class = "email-login">E-mail: </label>
+
         <input
-          class="center"
+          class="login-input"
           type="email"
           name="email"
           placeholder="Enter E-mail"
           style="margin-bottom: 1em"
         />
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Login</button>
       </form>
     </div>
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

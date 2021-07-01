@@ -9,28 +9,31 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+
   </head>
 
   <body>
     <%- include("_header") %>
     <main style="margin: 1em" class="product-info-container">
-      <h1 class = "product-title"><%= product.name %></h1>
-      <section class = "product-container">
+
+
         <thead >
-          <div class = "product-info">
-            <label> Product Description:</label>
-            <p><%= product.description %></p>
-            <p> <b>$<%= product.price %></b></p>
+          <div class = "product-card-page">
+            <div class="product-name"><%= product.name %></div>
+            <img class = "featured-image" src = '<%= product.photo_1 %>'>
+            <div class="product-description"><label> <b> Product Description:</b></label>
+            <p><%= product.description %></p></div>
+            <div class="product-price">
+             <b>💲 <%= product.price %></b></div>
             <p> <b>Seller ID: <%= product.seller_id %></b></p>
           <tr>
-            <img class = "featured-img" src = '<%= product.photo_1 %>'>
             <table class = "cta-buttons">
               <%if (user_email === "ally@123.com") { %>
                 <th><form method = "POST" action = "/admin/<%=product.id%>/delete"><button type="submit" class="btn-btn-primary">Delete!</button></form></th>
                 <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn-btn-primary">Sold!</button></form></th>
                 <% } else {%>
-                  <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn-btn-primary">Favourite This!</button></form></th>
-                  <th scope="col"><form class = "form" method = "GET" action = "/users/product/<%=product.id%>/message"><button class = 'btn-btn-primary'>Contact Seller</button></form></th>
+                  <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn-btn-primary">⭐ Favourtie This ⭐</button></form></th>
+                  <th scope="col"><form class = "form" method = "GET" action = "/users/product/<%=product.id%>/message"><button class = 'btn-btn-primary'> 📩 Contact Seller 📩</button></form></th>
                 <% } %>
           </tr>
         </thead>
@@ -38,6 +41,5 @@
 
         </tbody>
       </div>
-    </section>
   </body>
 </html>

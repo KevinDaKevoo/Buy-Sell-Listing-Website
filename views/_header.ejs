@@ -9,7 +9,7 @@
     <div class="title">
       <h3>Fake Kijiji</h3>
     </div>
-    <%} else {%>
+    <%} else if (user_email) {%>
     <div class="nav">
       <a class="nav-item nav-link" href="/">Home</a>
       <a class="nav-item nav-link" href="/users/messages">Messages</a>
@@ -18,7 +18,16 @@
     <div class="title">
       <h3>Fake Kijiji</h3>
     </div>
-    <% } %>
+    <% } else { %>
+      <div class="nav">
+        <a class="nav-item nav-link" href="/">Home</a>
+        <a></a>
+        <a></a>
+      </div>
+      <div class="title" style="margin-right: 0px;">
+        <h3>Fake Kijiji</h3>
+      </div>
+<%}%>
     <div class="navbar-nav">
 
       <% if (!user_email) { %>
