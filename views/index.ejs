@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/Buy-Sell-Listing-Website/styles/header.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -13,59 +14,87 @@
 
   <body>
     <%- include("_header") %>
-    <main style="margin: 1em">
-      <h1 class = "featured-title">Featured Deals right now!</h1>
+
+
+      <main style="margin: 1em">
+        <button class="btn-filter">Filter By Price</button>
+      <form class="filter-button" method="POST" action="/users/filter">
+            <div class="filter-input">
+              <input
+                type="number"
+                id="filter-min"
+                name="minprice"
+                placeholder="minprice"
+              />
+              <input
+                type="number"
+                id="filter-max"
+                name="maxprice"
+                placeholder="maxprice"
+              />
+              <button class="btn-submit">Search</button>
+            </div>
+          </form>
+      <h1 class = "featured-title">Featured Deals Right Now!</h1>
 
   <section class = "featured-container">
-        <div class = "featured-products-1"></div>
-        <thead >
+
           <%for (let product of products) {%>
             <%if (product.is_featured) {%>
-            <div>
+            <div class = product-card>
               <img class="featured-image" src="<%= product.photo_1 %>" alt="Card image cap">
               <tr>
+                <section class = "product">
+                  <div class = "product-name">
                 <th><%= product.name %></th>
-                <th><p>$<%= product.price %></p></th>
-                <th><form method = "GET" action = "/users/product/<%=product.id %>"><button type="submit" class="btn btn-primary">More Info</button></form></th>
+              </div>
+              <div class = "product-price">
+                <th>Price: $<%= product.price %></th>
+              </div>
+            </section>
+                <th><form method = "GET" action = "/users/product/<%=product.id %>" class="product-buttons"><button type="submit" class="btn-btn-primary">More Info</button></form></th>
                 <%if (user_email === "ally@123.com") { %>
-                  <th><form method = "POST" action = "/admin/<%=product.id%>/delete"><button type="submit" class="btn btn-primary">Delete!</button></form></th>
-                  <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn btn-primary">Sold!</button></form></th>
+                  <th><form method = "POST" action = "/admin/<%=product.id%>/delete"><button type="submit" class="btn-btn-primary">Delete!</button></form></th>
+                  <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn-btn-primary">Sold!</button></form></th>
                   <% } else {%>
-                    <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
-                    <th scope="col"><form class = "form" method = "GET" action = "/users/product/<%=product.id%>/message"><button class = 'btn-message'>Contact Seller</button></form></th>
+                    <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="product-buttons">⭐ Favourite This! ⭐</button></form></th>
+                    <th scope="col"><form class = "form" method = "GET" action = "/users/product/<%=product.id%>/message"><button class = 'product-buttons'>Contact Seller</button></form></th>
                   <% } %>
                 </tr>
               </div>
               <% } %>
             <%}%>
-              <h2>Not A Featured Deal</h2>
+            </section>
+            <section class = "not-featured">
+              <h2 class="not-featured-title">Not A Featured Deal</h2>
             <%for (let product of products) {%>
               <%if (!product.is_featured) {%>
-              <div>
-                <img class="featured-image" src="<%= product.photo_1 %>" alt="Card image cap">
+              <div class = "product-card-nf">
+                <img class="nf-image" src="<%= product.photo_1 %>" alt="Card image cap">
                 <tr>
+                  <section class = "product">
+                    <div class = "product-name">
                   <th><%= product.name %></th>
-                  <th><p>$<%= product.price %></p>
-                    <th><form method = "GET" action = "/users/product/<%=product.id%>"><button type="submit" class="btn btn-primary">More Info</button></form></th>
+                </div>
+                  <div class = "product-price">
+                  <th><p>Price: $<%= product.price %></p>
+                    </th> </div>
+                  </section>
+                    <th><form method = "GET" action = "/users/product/<%=product.id%>"><button type="submit" class="btn-btn-primary">More Info</button></form></th>
                     <%if (user_email === "ally@123.com") { %>
-                      <th><form method = "POST" action = "/admin/<%=product.id%>/delete"><button type="submit" class="btn btn-primary">Delete!</button></form></th>
-                      <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn btn-primary">Sold!</button></form></th>
+                      <th><form method = "POST" action = "/admin/<%=product.id%>/delete"><button type="submit" class="btn-btn-primary">Delete!</button></form></th>
+                      <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn-btn-primary">Sold!</button></form></th>
                       <% } else {%>
-                        <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
-                        <th scope="col"><form class = "form" method = "GET" action = "/users/product/<%=product.id%>/message"><button class = 'btn-message'>Contact Seller</button></form></th>
+                        <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn-btn-primary">⭐ Favourite This! ⭐</button></form></th>
+                        <th scope="col"><form class = "form" method = "GET" action = "/users/product/<%=product.id%>/message"><button class = 'btn-btn-primary'>Contact Seller</button></form></th>
                       <% } %>
                   </tr>
                 </div>
                 <% } %>
               <%}%>
-
-        </thead>
         <tbody>
         </tbody>
-      </div>
     </section>
-  </body>
-</html>
  <!-- Bootstrap JS -->
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

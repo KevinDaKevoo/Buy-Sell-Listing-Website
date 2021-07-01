@@ -13,16 +13,44 @@
 
   <body>
     <%- include("_header") %>
-    <div class="fav-product">
+    <h1 class="featured-title">⭐⭐⭐ Your Favorites! ⭐⭐⭐</h1>
+    <section class="favorites-container">
       <%for (let favorite of favorites) {%>
+      <div class="product-card">
         <tr>
-          <img class="featured-image" src="<%= favorite.photo_1%>" alt="Card image cap">
-          <th><%= favorite.name %></th>
-          <th>$<%= favorite.price %></th>
-          <th scope="col"><form method="POST" action="/users/favourite/<%=favorite.favorite_id%>/delete"><button type = "submit" class = 'btn-delete'>Delete This .. <%=favorite.favorite_id%></button>
-          </form></th>
+          <img
+            class="featured-image"
+            src="<%= favorite.photo_1%>"
+            alt="Card image cap"
+          />
+          <div class="product-name">
+            <th><%= favorite.name %></th>
+          </div>
+          <div class="product-price">
+            <th>$<%= favorite.price %></th>
+          </div>
+          <th>
+            <form
+              method="GET"
+              action="/users/product/<%=favorite.product_id %>"
+              class="product-buttons"
+            >
+              <button type="submit" class="btn-btn-primary">More Info</button>
+            </form>
+          </th>
+          <th scope="col">
+            <form
+              method="POST"
+              action="/users/favourite/<%=favorite.favorite_id%>/delete"
+            >
+              <button type="submit" class="btn-btn-primary">
+                Delete This From Favorites...
+              </button>
+            </form>
+          </th>
         </tr>
+      </div>
       <% } %>
-    </div>
+    </section>
   </body>
 </html>
