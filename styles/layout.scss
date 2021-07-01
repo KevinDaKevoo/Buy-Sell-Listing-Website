@@ -365,3 +365,68 @@ main {
   background-color: lemonchiffon;
   margin-bottom: 10px;
 }
+
+.messages-container {
+
+  background-color: lightslategrey;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.reply-message-button {
+  background-color: burlywood;
+  border-radius: 20%;
+  font-weight: 100;
+  cursor: pointer;
+  height: 50px;
+  width: auto;
+
+}
+
+.reply-message-button:hover {
+  background-color: rgb(124, 77, 15);
+  border-radius: 20%;
+  font-weight: 100;
+  cursor: pointer;
+  color: white;
+}
+.message-admin {
+  background-color: burlywood;
+  border-radius: 20%;
+  font-weight: 100;
+  cursor: pointer;
+  height: 50px;
+  width: auto;
+}
+
+.message-admin:hover {
+  background-color: rgb(124, 77, 15);
+  border-radius: 20%;
+  font-weight: 100;
+  cursor: pointer;
+  color: white;
+}
+
+.messages-sent {
+  border-radius: 20px;
+  border-color: rgb(132, 165, 226);
+  border-style:solid;
+  display:flex;
+  border-width: 5px;
+  align-items: center;
+  flex-direction: column;
+  margin: 2em;
+}
+
+.messages-recived {
+
+  border-radius: 20px;
+  border-color: rgb(132, 165, 226);
+  border-style:solid;
+  display:flex;
+  border-width: 5px;
+  align-items: center;
+  flex-direction: column;
+  margin: 2em;
+}

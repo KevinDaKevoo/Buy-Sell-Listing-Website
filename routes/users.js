@@ -139,9 +139,9 @@ WHERE favorite_products.user_id= $1;`;
       });
   });
 
-  router.get("/message/:user_id", (req, res) => {
-    res.render("message");
-  });
+  // router.get("/message/:user_id", (req, res) => {
+  //   res.render("message");
+  // });
 
   router.get("/product/:product_id/message", (req, res) => {
     const user_email = req.session.user_email;
@@ -208,24 +208,34 @@ WHERE favorite_products.user_id= $1;`;
   });
 
   router.get("/messages", (req, res) => {
-    const sqlQuery = `SELECT  content, products.id AS product_id, products.seller_id, products.name, products.price AS price, user_id, users.name AS user_name
-     FROM messages
-     JOIN products ON products.id = messages.product_id
-     JOIN users ON users.id = messages.user_id
-     WHERE user_id = $1;`;
-
+    let values = [];
     const userId = req.session.user_id;
-    const values = [userId];
+    let sqlQuery = ``;
+    if (userId == 1) {
+      sqlQuery = `SELECT * FROM messages WHERE is_for_admin = $1 ORDER BY messages.id DESC;`;
+      values = [true];
+    } else {
+      sqlQuery = `SELECT is_for_admin, content, products.id AS product_id, products.seller_id, products.name, products.price AS price, user_id, users.name AS user_name
+      FROM messages
+      JOIN products ON products.id = messages.product_id
+      JOIN users ON users.id = messages.user_id
+      WHERE user_id = $1 OR products.seller_id = $2
+      ORDER BY messages.id DESC;`;
+      values = [userId, userId];
+    }
+    console.log("this is user ID on 219 GET", typeof userId, userId);
     console.log("THIS IS REQ.SESSION IN GET /MESSAGE", req.session);
     const user_email = req.session.user_email;
+
     db.query(sqlQuery, values)
       .then((data) => {
         console.log(
-          "THIS IS DATA ROWS INSIDE THE GET MESSAGE ROUTE",
+          "THIS IS DATA ROWS INSIDE THE GET MESSAGE ROUTE LINE 224",
           data.rows
         );
         const messages = data.rows;
         const templateVars = { user_email, userId, messages };
+        console.log("I am template Vars line 230", templateVars);
         res.render("message", templateVars);
       })
       .catch((err) => {
@@ -257,15 +267,23 @@ WHERE favorite_products.user_id= $1;`;
   });
 
   router.post("/product/reply", (req, res) => {
-    const sqlQuery = `INSERT INTO messages (user_id, content, product_id) VALUES ($1, $2, $3);`;
+    const sqlQuery = `INSERT INTO messages (user_id, content, product_id, is_for_admin) VALUES ($1, $2, $3, $4);`;
     console.log("I am being injected", req.body);
     const userId = req.session.user_id;
-    const message = req.body.name;
 
+    const message = req.body.name;
+    let isAdmin = false;
     console.log("this is message:", message);
+    console.log("THIS IS REQ BODY LINE 267", req.body);
     const productId = req.body.contactId;
+    console.log("THIS IS A PRODUCTID IN LINE 270", typeof productId);
+    if (productId === "1") {
+      isAdmin = true;
+    }
+
+    console.log("ADMIN CLICKED ", isAdmin);
     console.log("this is the productId", productId);
-    const values = [userId, message, productId];
+    const values = [userId, message, productId, isAdmin];
     db.query(sqlQuery, values)
       .then((data) => {
         console.log("I got here?", data.rows);
@@ -287,13 +305,13 @@ WHERE favorite_products.user_id= $1;`;
     } else if (!min && max) {
       sqlQuery += ` WHERE products.price < $1 ORDER BY products.price;`;
       values.push(max);
-    } else if (!min && !max){
-      sqlQuery += ` WHERE products.price > 0 ORDER BY products.price;`
+    } else if (!min && !max) {
+      sqlQuery += ` WHERE products.price > 0 ORDER BY products.price;`;
     } else {
       sqlQuery += ` WHERE products.price > $1 and products.price < $2 ORDER BY products.price;`;
       values.push(min);
       values.push(max);
-    };
+    }
 
     const user_email = req.session.user_email;
     const userId = req.session.user_id;

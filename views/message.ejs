@@ -13,67 +13,110 @@
 
   <body>
     <%- include("_header") %>
-    <h1>Messages</h1>
-    <%for (let message of messages) {%>
-    <div class="message">
-      <label><b>BuyerId:</b> <%=message.user_id%></label>
-      <label><b>BuyerName: </b><%=message.user_name%></label>
-      <label><b>Product Price:</b>💲<%=message.price%></label>
-      <label><b>SellerId:</b> <%=message.seller_id%></label>
-      <label><b>Product Name:</b> <%=message.name%></label>
-      <label><b>Message:</b> <%=message.content%></label>
-      <label><b>Product ID:</b> <%=message.product_id%></label>
-      <label>  <a href = "http://localhost:8080/users/product/<%=message.product_id%>?"> Checkout this product</a></label>
-      <% } %>
-    </div>
-    <div>
+    <section class="messages-container">
+      <div class="messages-recived">
+        <h1>Received From:</h1>
+        <%for (let message of messages) {%>
+          <%if (message.seller_id === userId) {%>
+        <div>
+          <label><b>BuyerId:</b> <%=message.user_id%></label>
+          <label
+            ><b>Product Name:<%=message.product_id%></b>
+            <a
+              href="http://localhost:8080/users/product/<%=message.product_id%>?"
+              ><%=message.name%>
+            </a></label
+          >
+          <label><b>Message:</b> <%=message.content%></label>
+        </div>
 
-<button class="reply-message-button" id="reply-message-button">Reply To A Message</button>
-<div class="reply-message-box" id="reply-message-box">
-  <p> Select Seller Id To Send A Message To</p>
-  <form method="POST" action="/users/product/reply">
-  <select name="contactId" id="contactId">
-    <label for="sellerId">Choose a seller:</label>
-      <!-- not sure how to implement this post action to get the message.proudctid to redirect to new messages -->
-      <%for (let message of messages) {%>
-      <option value="<%=message.product_id%>"><%=message.seller_id%></option>
-        <%}%>
-  </select>
-  <input type="text" id="name" name="name" /><br />
-<button class="btn-message" id="send-admin-button">Submit</button></form>
+        <% } else if (userId == 1 && message.is_for_admin) { %>
+        <div>
+          <label><b>BuyerId:</b> <%=message.user_id%></label>
+          <label
+            ><b>Product Name:</b>
+            <a
+              href="http://localhost:8080/users/product/<%=message.product_id%>?"
+              ><%=message.name%>
+            </a></label
+          >
+          <label><b>Message:</b> <%=message.content%></label>
+        </div>
+        <% } %> <% } %>
       </div>
-
-
-
-  <button class="message-admin" id="message-admin">Message Admin</button>
-<div class="message-admin-box" id="message-admin-box">
-  <p> Send Message To The Admin</p>
-  <!-- <select name="contactId" id="contactId">
-    <%for (let message of messages) {%>
-      <option value="<%=message.seller_id%>"><%=message.seller_id%></option>
-        <%}%>
-  </select> -->
-  <!-- WHHHHYYY LOL-->
-<form method="POST" action="/users/messages/admin"><textarea class="reply-message" id="reply-message"></textarea>
-<input type ="submit"></form>
+      <div class="messages-sent">
+        <h1>Sent Messages:</h1>
+        <%for (let message of messages) {%> <%if (message.user_id === userId)
+        {%>
+        <div>
+          <label><b>SellerId:</b> <%=message.seller_id%></label>
+          <label
+            ><b>Product Name:</b>
+            <a
+              href="http://localhost:8080/users/product/<%=message.product_id%>?"
+              ><%=message.name%>
+            </a></label
+          >
+          <label><b>Product Price:</b>💲<%=message.price%></label>
+          <label><b>Message:</b> <%=message.content%></label>
+        </div>
+        <% } %> <% } %>
       </div>
-    <!-- </body>
+      <div class="messages-page-buttons">
+        <button class="reply-message-button" id="reply-message-button">
+          Reply To A Message
+        </button>
+        <div class="reply-message-box" id="reply-message-box">
+          <p>Select Seller Id To Send A Message To</p>
+          <form method="POST" action="/users/product/reply">
+            <select name="contactId" id="contactId">
+              <label for="sellerId">Choose a seller:</label>
+              <!-- not sure how to implement this post action to get the message.proudctid to redirect to new messages -->
+              <%for (let message of messages) {%>
+              <option value="<%=message.product_id%>">
+                <%=message.seller_id%>
+              </option>
+              <%}%>
+            </select>
+            <input type="text" id="name" name="name" /><br />
+            <button class="btn-message" id="send-admin-button">Submit</button>
+          </form>
+        </div>
+        <button class="message-admin" id="message-admin">Message Admin</button>
+        <div class="message-admin-box" id="message-admin-box">
+          <p>Send Message To The Admin</p>
+
+          <form method="POST" action="/users/product/reply">
+            <select name="contactId" id="contactId">
+              <label for="sellerId">Choose a seller:</label>
+              <!-- not sure how to implement this post action to get the message.proudctid to redirect to new messages -->
+
+              <option value="1" selected></option>
+            </select>
+            <input type="text" id="name" name="name" /><br />
+            <input name="is_for_admin" type="checkbox" />
+            <button class="btn-message" id="send-admin-button">Submit</button>
+          </form>
+        </div>
+      </div>
+      <!-- </body>
 </html> -->
-    <!-- Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+      <!-- Bootstrap JS -->
+      <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+      ></script>
+    </section>
   </body>
 </html>
