@@ -13,7 +13,7 @@
 
   <body>
     <%- include("_header") %>
-    <main style="margin: 1em">
+    <main style="margin: 1em" class="product-info-container">
       <h1 class = "product-title"><%= product.name %></h1>
       <section class = "product-container">
         <thead >
@@ -26,11 +26,11 @@
             <img class = "featured-img" src = '<%= product.photo_1 %>'>
             <table class = "cta-buttons">
               <%if (user_email === "ally@123.com") { %>
-                <th><form method = "POST" action = "/admin/<%=product.id%>/delete"><button type="submit" class="btn btn-primary">Delete!</button></form></th>
-                <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn btn-primary">Sold!</button></form></th>
+                <th><form method = "POST" action = "/admin/<%=product.id%>/delete"><button type="submit" class="btn-btn-primary">Delete!</button></form></th>
+                <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn-btn-primary">Sold!</button></form></th>
                 <% } else {%>
-                  <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn btn-primary">Favourite This!</button></form></th>
-                  <th scope="col"><form class = "form" method = "GET" action = "/users/product/<%=product.id%>/message"><button class = 'btn-message'>Contact Seller</button></form></th>
+                  <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn-btn-primary">Favourite This!</button></form></th>
+                  <th scope="col"><form class = "form" method = "GET" action = "/users/product/<%=product.id%>/message"><button class = 'btn-btn-primary'>Contact Seller</button></form></th>
                 <% } %>
           </tr>
         </thead>

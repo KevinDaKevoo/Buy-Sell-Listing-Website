@@ -225,6 +225,13 @@ main {
   font-size: 1.5em;
 }
 
-button {
-
+.product-info-container {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.cta-buttons {
+  display: flex;
+  justify-content: center;
 }
