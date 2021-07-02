@@ -17,34 +17,34 @@ This is a Buy/Sell Listing Website. An webpage app that allows you to buy/sell n
 ## Screenshots
 
 #### Home Page 
-!["Featured Items"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Home.png)
+!["Featured Items"](https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Home.png)
 
 #### Login Page
-!["Login Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Login.png)
+!["Login Page"](https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Login.png)
 
 #### Add Listing Page
-!["Add Listing Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Admin-Add-Listing.png)
+!["Add Listing Page"](https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Admin-Add-Listing.png)
 
 
 #### Mark Items Sold
-!["Mark Items Sold"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Admin-Mark-Sold.png)
+!["Mark Items Sold"](https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Admin-Mark-Sold.png)
 
 ### Admin Home Page
-!["Admin Home Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Admin-home.png)
+!["Admin Home Page"](https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Admin-home.png)
 
 
 
 #### Filtered Items Page
-!["Filtered Items Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Filtered-page.png)
+!["Filtered Items Page"](https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Filtered-page.png)
 
 #### Favorites Page
-!["Favorites Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Favourites-page.png)
+!["Favorites Page"](https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Favourites-page.png)
 
 #### Message Page 
-!["Message Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Message-user.png)
+!["Message Page"](https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Message-user.png)
 
 #### More Info Page 
-!["More Info Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/More-info-page.png)
+!["More Info Page"](https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/More-info-page.png)
 ## Project Setup
 
 The following steps are only for _one_ of the group members to perform.
