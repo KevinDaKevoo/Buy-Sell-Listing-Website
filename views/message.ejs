@@ -14,11 +14,11 @@
   <body>
     <%- include("_header") %>
     <section class="messages-container">
-      <div class="messages-recived">
+      <div class="messages-received">
         <h1>Received From:</h1>
         <%for (let message of messages) {%>
           <%if (message.seller_id === userId) {%>
-        <div>
+        <div class = "messages-recieved-card">
           <label><b>BuyerId:</b> <%=message.user_id%></label>
           <label
             ><b>Product Name:<%=message.product_id%></b>
@@ -31,7 +31,7 @@
         </div>
 
         <% } else if (userId == 1 && message.is_for_admin) { %>
-        <div>
+        <div class = "messages-recieved-card">
           <label><b>BuyerId:</b> <%=message.user_id%></label>
           <label
             ><b>Product Name:</b>
@@ -44,11 +44,12 @@
         </div>
         <% } %> <% } %>
       </div>
+      <div class = response-container>
       <div class="messages-sent">
         <h1>Sent Messages:</h1>
         <%for (let message of messages) {%> <%if (message.user_id === userId)
         {%>
-        <div>
+        <div class = "messages-sent-card">
           <label><b>SellerId:</b> <%=message.seller_id%></label>
           <label
             ><b>Product Name:</b>
@@ -62,45 +63,43 @@
         </div>
         <% } %> <% } %>
       </div>
-      <div class="messages-page-buttons">
+<div class = "respond-buttons">
         <button class="reply-message-button" id="reply-message-button">
           Reply To A Message
         </button>
-        <div class="reply-message-box" id="reply-message-box">
+        <div id="reply-message-box">
           <p>Select Seller Id To Send A Message To</p>
-          <form method="POST" action="/users/product/reply">
+          <form class = "respond-seller" method="POST" action="/users/product/reply">
             <select name="contactId" id="contactId">
               <label for="sellerId">Choose a seller:</label>
-              <!-- not sure how to implement this post action to get the message.proudctid to redirect to new messages -->
               <%for (let message of messages) {%>
               <option value="<%=message.product_id%>">
                 <%=message.seller_id%>
               </option>
               <%}%>
             </select>
-            <input type="text" id="name" name="name" /><br />
-            <button class="btn-message" id="send-admin-button">Submit</button>
+            <input type="text" id="name" name="name" /><br /><br />
+            <center><button class="btn-btn-primary" id="send-admin-button">Submit</button></center>
           </form>
         </div>
+        <%if (user_email !== "ally@123.com") {%>
         <button class="message-admin" id="message-admin">Message Admin</button>
         <div class="message-admin-box" id="message-admin-box">
           <p>Send Message To The Admin</p>
-
-          <form method="POST" action="/users/product/reply">
+          <form class="respond-seller" method="POST" action="/users/product/reply">
             <select name="contactId" id="contactId">
               <label for="sellerId">Choose a seller:</label>
-              <!-- not sure how to implement this post action to get the message.proudctid to redirect to new messages -->
-
               <option value="1" selected></option>
             </select>
             <input type="text" id="name" name="name" /><br />
             <input name="is_for_admin" type="checkbox" />
-            <button class="btn-message" id="send-admin-button">Submit</button>
+            <center><button class="btn-btn-primary" id="send-admin-button">Submit</button></center>
           </form>
+<%}%>
+        </div>
         </div>
       </div>
-      <!-- </body>
-</html> -->
+    </div>
       <!-- Bootstrap JS -->
       <script
         src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

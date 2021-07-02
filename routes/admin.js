@@ -1,19 +1,7 @@
-
 const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-  // router.get("/", (req, res) => {
-  //   db.query(`SELECT * FROM users;`)
-  //     .then((data) => {
-  //       const users = data.rows;
-  //       res.json({ users });
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).json({ error: err.message });
-  //     });
-  // });
-
   router.get("/add_listing", (req, res) => {
     const userId = req.session.user_id;
     const user_email = req.session.user_email;
@@ -33,17 +21,14 @@ module.exports = (db) => {
     const photo = info.photo_1;
     const price = info.price;
     const description = info.description;
-    // console.log(name, sellerId, typeId, photo, price, description);
     const sqlQuery = `INSERT INTO products (name, seller_id, type_id, photo_1, price, description) VALUES ($1, $2, $3, $4, $5, $6)`;
     const values = [name, sellerId, typeId, photo, price, description];
     db.query(sqlQuery, values)
       .then((data) => {
-        console.log("this is data: ", data);
         const user_email = req.session.user_email;
         const userId = req.session.user_id;
         const templateVars = { user_email, userId };
         res.redirect("/");
-        console.log(data);
       })
       .catch((err) => {
         res.status(500).json({ err: err.message });
@@ -52,12 +37,9 @@ module.exports = (db) => {
 
   router.post("/:product_id/delete", (req, res) => {
     const sqlQuery = `DELETE FROM products WHERE id = $1;`;
-    console.log("this is req params ", req.params.product_id);
     const values = [req.params.product_id];
     db.query(sqlQuery, values)
       .then((data) => {
-        console.log("DATA IS HERE ---- DELETE PRODUCT FOR ADMIN");
-        console.log("Query done");
         res.redirect("/");
       })
       .catch((err) => {
@@ -79,28 +61,3 @@ module.exports = (db) => {
 
   return router;
 };
-
-// INSERT INTO products (seller_id, type_id, name, is_available, description, photo_1, price, is_featured)
-// VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-
-/*
-router.get("/admin/products", (req, res) => {
-  res.render("admin_products")
-});
-
-router.get("/admin/products/product_id", (req, res) => {
-  res.render("admin_product_edit")
-});
-
-router.post("/admin/product_id/delete", (req, res) => {
-
-});
-
-router.post("/admin/product_id/sold", (req, res) => {
-
-});
-
-router.get("/admin/logout", (req, res) => {
-
-});
-*/

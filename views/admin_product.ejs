@@ -15,22 +15,31 @@
     <%- include("_header") %>
     <section>
       <div class="admin-input-form">
-        <br /><br /><br />
-        <form method="POST" action="/admin/add_listing">
-          <br />
-          <label for="name">Product Name</label><br />
-          <input type="text" id="name" name="name" /><br />
-          <label for="seller_id">Seller ID:</label><br />
-          <input type="text" id="seller_id" name="seller_id" /><br />
-          <label for="type_id">Type ID:</label><br />
-          <input type="text" id="type_id" name="type_id" /><br />
-          <label for="description">Description</label><br />
-          <input type="text" id="description" name="description" /><br />
-          <label for="photo_1">Photo:</label><br />
-          <input type="text" id="photo_1" name="photo_1" /><br />
-          <label for="price">Price:</label><br />
-          <input type="text" id="price" name="price" /><br />
-          <button type="submit" class="btn btn-primary">Submit</button>
+
+        <form
+          class="admin-input-form"
+          method="POST"
+          action="/admin/add_listing"
+        >
+          <center>
+            <h2 class="addmin-input-title">Add Product Details Here</h2>
+          </center>
+
+          <label for="name">Product Name</label>
+          <input type="text" id="name" name="name" />
+          <label for="seller_id">Seller ID:</label>
+          <input type="text" id="seller_id" name="seller_id" />
+          <label for="type_id">Type ID:</label>
+          <input type="text" id="type_id" name="type_id" />
+          <label for="description">Description</label>
+          <input type="text" id="description" name="description"/>
+          <label for="photo_1">Photo:</label>
+          <input type="text" id="photo_1" name="photo_1" />
+          <label for="price">Price:</label>
+          <input type="text" id="price" name="price" />
+          <center>
+            <button type="submit" class="btn-btn-primary">Submit</button>
+          </center>
         </form>
       </div>
     </section>

@@ -23,14 +23,14 @@
           <a class="nav-item nav-link" href="/admin/add_listing">Add Listing</a>
         </div>
         <div class="login-title">
-          <h3>Fake Kijiji</h3>
+          <h3>🎊The Best Shop🎊</h3>
         </div>
         <%} else {%>
         <div class="nav">
           <a class="nav-item nav-link" href="/">Home</a>
         </div>
         <div class="login-title">
-          <h3>Fake Kijiji</h3>
+          <h3>🎊The Best Shop🎊</h3>
         </div>
         <% } %>
         <div class="navbar-nav">
@@ -40,11 +40,11 @@
             <% } else if (user_email === "ally@123.com") { %>
             <h2>HELLO</h2>
             <form class="form-inline" action="/logout" method="POST"></form>
-            <div>Logged in as ADMIN: <%=user_email%></div>
+            <div>Welcome ADMIN: <%=user_email%></div>
             <div><a class="logout" href="/users/logout">Logout</a></div>
             <%} else {%>
             <form class="form-inline" action="/logout" method="POST"></form>
-            <div>Logged in as: <%=user_email%></div>
+            <div>Welcome as: <%=user_email%></div>
             <div><a class="logout" href="/users/logout">Logout</a></div>
            <% } %>
             </div>

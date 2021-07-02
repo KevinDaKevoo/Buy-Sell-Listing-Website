@@ -1,7 +1,4 @@
-// See: https://sass-lang.com/
-// @media on screen and (min-width: 1024px) {
 
-// }
 
 html {
   font-family: "Times New Roman", Times, serif;
@@ -10,13 +7,12 @@ html {
 body {
   background-color: #6db6dd;
   background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
-  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+
 
   h1 {
     color: #244751;
   }
 }
-
 .header-main {
   position: static;
   width: 100%;
@@ -29,6 +25,7 @@ body {
   align-items: center;
   padding: 20px;
   height: 150px;
+
 }
 
 .title {
@@ -107,7 +104,7 @@ main {
 }
 
 .featured-title {
-  color: red;
+  color: blue;
   font-size: 40px;
   display: flex;
   align-content: stretch;
@@ -367,7 +364,6 @@ main {
 }
 
 .messages-container {
-
   background-color: lightslategrey;
   display: flex;
   align-items: center;
@@ -381,7 +377,7 @@ main {
   cursor: pointer;
   height: 50px;
   width: auto;
-
+  margin-top: 2px;
 }
 
 .reply-message-button:hover {
@@ -411,22 +407,126 @@ main {
 .messages-sent {
   border-radius: 20px;
   border-color: rgb(132, 165, 226);
-  border-style:solid;
-  display:flex;
+  border-style: solid;
+  display: flex;
   border-width: 5px;
   align-items: center;
   flex-direction: column;
   margin: 2em;
 }
 
-.messages-recived {
-
+.messages-received {
   border-radius: 20px;
   border-color: rgb(132, 165, 226);
-  border-style:solid;
-  display:flex;
+  border-style: solid;
+  display: flex;
   border-width: 5px;
   align-items: center;
   flex-direction: column;
   margin: 2em;
 }
+
+.messages-sent {
+  border-radius: 20px;
+  border-color: rgb(132, 165, 226);
+  border-style: solid;
+  display: flex;
+  border-width: 5px;
+  align-items: center;
+  flex-direction: column;
+  margin: 2em;
+}
+.admin-input-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 30px;
+  width: 100%;
+  align-items: center;
+}
+
+.admin-input-form input {
+  width: 30%;
+  border-radius: 20px;
+  background-color: lightyellow;
+  margin-bottom: 10px;
+}
+
+#description {
+  height: 70px;
+  width: 30%;
+}
+
+#scrollup {
+  width: 40px;
+  line-height: 40px;
+  z-index: 9;
+  display: block;
+  cursor: pointer;
+  position: fixed;
+  bottom: 50px;
+  right: 0;
+  background-color: rgba(57, 26, 192, 0.2);
+  color: whitesmoke;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 10px;
+  margin: 5px;
+}
+#scrollup:hover {
+  background-color: #ddf;
+  color: #000;
+}
+
+.messages-recieved-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 10px;
+  border-style: solid;
+  height: auto;
+  width: 80%;
+  padding: 5px;
+  margin: 1em;
+}
+
+.messages-sent-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 10px;
+  border-style: solid;
+  height: auto;
+  width: 80%;
+  padding: 5px;
+  margin: 1em;
+}
+
+.messages-sent {
+  width: 100%;
+}
+
+.response-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.message-recieved {
+  width: 100%;
+}
+
+.respond-buttons {
+  display: flex;
+  flex-direction: row;
+  flex: wrap;
+  align-content: stretch;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.respond-buttons input {
+  background-color: lightyellow;
+}
+
+

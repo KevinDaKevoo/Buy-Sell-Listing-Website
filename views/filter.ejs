@@ -1,26 +1,63 @@
-<!DOCTYPE html>''
-<html lang="e n">
+<!DOCTYPE html>
+<html lang="en">
   <head>
-
     <title>Product Page</title>
 
-  <lnk rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <lin rel="tyleheet" href="/vendor/border-box.css" type="text/css" />
-  <link el="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link el="stylesheet" hr
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/Buy-Sell-Listing-Website/styles/header.css" type="text/css" />
 
-       mr nm id="
->a
-    otp   -r>=e<>00
->tborn     jo  ad < <
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+    <%- include("_header") %>
+    <div class="filter-">
+    <center><button class="btn-filter">Filter By Price</button></center>
+      <form class="filter-button" method="POST" action="/users/filter">
+            <div class="filter-input">
+              <input
+                type="number"
+                id="filter-min"
+                name="minprice"
+                placeholder="minprice"
+              />
+              <input
+                type="number"
+                id="filter-max"
+                name="maxprice"
+                placeholder="maxprice"
+              />
+              <button class="btn-submit" id="filter-page-button">Search</button>
+            </div>
+          </form>
+
+
+<div class="filtered-products">
+      <%for (let product of products) {%>
+        <div class = product-card-nf>
+          <img class="featured-image" src="<%= product.product_photo %>" alt="Card image cap">
+          <tr><div class = "product-name">
+            <th><b>Product Name: </b><%= product.product_name %></th></div>
+            <div class = "product-price">
+            <th><p><b>Product Price: </b>$<%= product.product_price %></p></th></div>
+            <div class="button-nf">
+            <th><form method = "GET" action = "/users/product/<%=product.id %>"><button type="submit" class="btn-btn-primary">More Info</button></form></th>
+            <%if (user_email === "ally@123.com") { %>
+              <th><form method = "POST" action = "/admin/<%=product.id%>/delete"><button type="submit" class="btn-btn-primary">Delete!</button></form></th>
+              <th><form method = "POST" action = "/admin/<%=product.id%>/sold"><button type="submit" class="btn-btn-primary">Sold!</button></form></th>
+              <% } else {%>
+                <th><form method = "POST" action = "/users/product/<%=product.id%>/favorites"><button type="submit" class="btn-btn-primary">⭐ Favourtie This ⭐</button></form></th>
+                <th scope="col"><form class = "form" method = "GET" action = "/users/product/<%=product.id%>/message"><button class = 'btn-btn-primary'>📩 Contact Seller 📩</button></form></th>
+              <% } %>
               </div>
             </tr>
-    > /t
-}
-
-ramnsqs("msqsqsqsqsq  $(".filter-input").hide();
-
-  $(".btn-filter").click(function (event) {
-    event.preventDefault();
-    $(".filter-input").show();
-  });
+          </div>
+        <%}%>
+        </div>
+        </tbody>
+    </section>
+  </body>
+</html>

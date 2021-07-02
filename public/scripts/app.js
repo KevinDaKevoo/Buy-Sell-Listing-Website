@@ -1,14 +1,3 @@
-// $(() => {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/users"
-//   }).done((users) => {
-//     for(user of users) {
-//       $("<div>").text(user.name).appendTo($("body"));
-//     }
-//   });;
-// });
-
 $(document).ready(function () {
   $("#reply-message-box").hide();
   $("#message-admin-box").hide();
@@ -27,5 +16,5 @@ $(document).ready(function () {
     event.preventDefault();
     $(".filter-input").show();
   });
-
 });
+
