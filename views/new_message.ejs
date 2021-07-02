@@ -1,44 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Home Page</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<head>
+  <title>Home Page</title>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-  <body>
-    <%- include("_header") %>
-    <main style="margin: 1em">
-      <h1 class = "new-message-title">New Message</h1>
-      <section class = "product-card-page">
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
 
-          <div class="product-name">
-          <h3><%=product.name%></h3> </div>
-          <img class = "featured-image" src="<%=product.photo_1%>">
+<body>
+  <%- include("_header") %>
+  <main style="margin: 1em">
+    <h1 class="new-message-title">New Message</h1>
+    <section class="product-card-page">
 
-          <div class="product-description">
-            <label><b>Product Description: </b></label>
-            <%= product.description %></div>
-            <div class="product-price">
-          <h2>Price: 💲<%= product.price %></h2></div>
-          <h2> <b>Seller ID: <%= product.seller_id %></b></h2>
-          <form method="POST" action="/users/product/<%=product.id%>/message">
-            <br />
-            <label for="name">Send a message to the seller!</label><br />
-            <input class="message-seller" type="text" id="name" name="name"/><br />
-            <th scope="col"> <center><button class = 'btn-btn-primary'>Message Seller</button></center></th>
+      <div class="product-name">
+        <h3><%=product.name%></h3>
+      </div>
+      <img class="featured-image" src="<%=product.photo_1%>">
 
-            </form>
+      <div class="product-description">
+        <label><b>Product Description: </b></label>
+        <%= product.description %></div>
+      <div class="product-price">
+        <h2>Price: 💲<%= product.price %></h2>
+      </div>
+      <h2> <b>Seller ID: <%= product.seller_id %></b></h2>
+      <form method="POST" action="/users/product/<%=product.id%>/message">
+        <br />
+        <label for="name">Send a message to the seller!</label><br />
+        <input class="message-seller" type="text" id="name" name="name" /><br />
+        <th scope="col">
+          <center><button class='btn-btn-primary'>Message Seller</button></center>
+        </th>
+
+      </form>
 
       </div>
- <!-- Bootstrap JS -->
- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <!-- Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+      </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+      </script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+      </script>
 </body>
+
 </html>

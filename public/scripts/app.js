@@ -1,8 +1,9 @@
 $(document).ready(function () {
+  //hiding all div classes
   $("#reply-message-box").hide();
   $("#message-admin-box").hide();
   $(".filter-input").hide();
-
+  //showing all hidden div classes
   $("#reply-message-button").click(function (event) {
     event.preventDefault();
     $("#reply-message-box").show();

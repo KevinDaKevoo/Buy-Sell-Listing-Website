@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+  //Rendering new listing page
   router.get("/add_listing", (req, res) => {
     const userId = req.session.user_id;
     const user_email = req.session.user_email;
@@ -13,6 +14,7 @@ module.exports = (db) => {
     }
   });
 
+  //Creating new listing for product
   router.post("/add_listing", (req, res) => {
     const info = req.body;
     const name = info.name;
@@ -25,9 +27,6 @@ module.exports = (db) => {
     const values = [name, sellerId, typeId, photo, price, description];
     db.query(sqlQuery, values)
       .then((data) => {
-        const user_email = req.session.user_email;
-        const userId = req.session.user_id;
-        const templateVars = { user_email, userId };
         res.redirect("/");
       })
       .catch((err) => {
@@ -35,6 +34,7 @@ module.exports = (db) => {
       });
   });
 
+  //Removing a product
   router.post("/:product_id/delete", (req, res) => {
     const sqlQuery = `DELETE FROM products WHERE id = $1;`;
     const values = [req.params.product_id];
@@ -47,6 +47,7 @@ module.exports = (db) => {
       });
   });
 
+  //Marking a product as sold
   router.post("/:product_id/sold", (req, res) => {
     const sqlQuery = `UPDATE products SET photo_1 = 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/sold-out-stamp-design-template-73e2343e49d21299312961eb3f631da7_screen.jpg?ts=1609019232' WHERE id = $1;`;
     const values = [req.params.product_id];

@@ -133,6 +133,16 @@ main {
   background-color: rgba(224, 174, 98, 0.3);
 }
 
+.product-card:hover {
+  border-color: black;
+  border-radius: 1em;
+  background-color: rgba(145, 98, 27, 0.3);
+}
+.product-card-nf:hover {
+  border-color: black;
+  border-radius: 1em;
+  background-color: rgba(145, 98, 27, 0.3);
+}
 .btn-filter {
   background-color: lightsteelblue;
   border: 2px solid steelblue;

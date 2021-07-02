@@ -16,34 +16,34 @@
       <a class="nav-item nav-link" href="/users/favourite">Your Favorites</a>
     </div>
     <div class="title">
-      <h3>The Best Shop</h3>
+      <h3>🎊The Best Shop🎊</h3>
     </div>
     <% } else { %>
-      <div class="nav">
-        <a class="nav-item nav-link" href="/">Home</a>
-        <a></a>
-        <a></a>
-      </div>
-      <div class="title" style="margin-right: 0px;">
-        <h3>🎊The Best Shop🎊</h3>
-      </div>
-<%}%>
+    <div class="nav">
+      <a class="nav-item nav-link" href="/">Home</a>
+      <a></a>
+      <a></a>
+    </div>
+    <div class="title" style="margin-right: 0px;">
+      <h3>🎊The Best Shop🎊</h3>
+    </div>
+    <%}%>
     <div class="navbar-nav">
 
       <% if (!user_email) { %>
-      <div><a class="nav-item nav-link" href="/users/login">LOGIN</a></div>
-        <% } else if (user_email === "ally@123.com") { %>
-        <h2>HELLO</h2>
-        <form class="form-inline" action="/logout" method="POST"></form>
-        <div>Welcome ADMIN: <%=user_email%></div>
-        <div><a class="logout" href="/users/logout">Logout</a></div>
-        <%} else {%>
-        <form class="form-inline" action="/logout" method="POST"></form>
-        <div>Welcome: <%=user_email%></div>
-        <div><a class="logout" href="/users/logout">Logout</a></div>
-       <% } %>
-        </div>
-      </div>
+    <div><a class="nav-item nav-link" href="/users/login">LOGIN</a></div>
+    <% } else if (user_email === "ally@123.com") { %>
+    <h2>HELLO</h2>
+    <form class="form-inline" action="/logout" method="POST"></form>
+    <div>Welcome ADMIN: <%=user_email%></div>
+    <div><a class="logout" href="/users/logout">Logout</a></div>
+    <%} else {%>
+    <form class="form-inline" action="/logout" method="POST"></form>
+    <div>Welcome: <%=user_email%></div>
+    <div><a class="logout" href="/users/logout">Logout</a></div>
+    <% } %>
+    </div>
+    </div>
     </div>
   </nav>
 </header>

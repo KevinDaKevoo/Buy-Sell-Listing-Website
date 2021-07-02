@@ -1,75 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Your Messages</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<head>
+  <title>Your Messages</title>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-  <body>
-    <%- include("_header") %>
-    <section class="messages-container">
-      <div class="messages-received">
-        <h1>Received From:</h1>
-        <%for (let message of messages) {%>
-          <%if (message.seller_id === userId) {%>
-        <div class = "messages-recieved-card">
-          <label><b>BuyerId:</b> <%=message.user_id%></label>
-          <label
-            ><b>Product Name:<%=message.product_id%></b>
-            <a
-              href="http://localhost:8080/users/product/<%=message.product_id%>?"
-              ><%=message.name%>
-            </a></label
-          >
-          <label><b>Message:</b> <%=message.content%></label>
-        </div>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
 
-        <% } else if (userId == 1 && message.is_for_admin) { %>
-        <div class = "messages-recieved-card">
-          <label><b>BuyerId:</b> <%=message.user_id%></label>
-          <label
-            ><b>Product Name:</b>
-            <a
-              href="http://localhost:8080/users/product/<%=message.product_id%>?"
-              ><%=message.name%>
-            </a></label
-          >
-          <label><b>Message:</b> <%=message.content%></label>
-        </div>
-        <% } %> <% } %>
+<body>
+  <%- include("_header") %>
+  <section class="messages-container">
+    <div class="messages-received">
+      <h1>Received From:</h1>
+      <%for (let message of messages) {%>
+      <%if (message.seller_id === userId) {%>
+      <div class="messages-recieved-card">
+        <label><b>BuyerId:</b> <%=message.user_id%></label>
+        <label><b>Message:</b> <%=message.content%></label>
       </div>
-      <div class = response-container>
+
+      <% } else if (userId == 1 && message.is_for_admin) { %>
+      <div class="messages-recieved-card">
+        <label><b>BuyerId:</b> <%=message.user_id%></label>
+        <label><b>Product Name:</b>
+          <a href="http://localhost:8080/users/product/<%=message.product_id%>?"><%=message.name%>
+          </a></label>
+        <label><b>Message:</b> <%=message.content%></label>
+      </div>
+      <% } %> <% } %>
+    </div>
+    <div class=response-container>
       <div class="messages-sent">
         <h1>Sent Messages:</h1>
         <%for (let message of messages) {%> <%if (message.user_id === userId)
         {%>
-        <div class = "messages-sent-card">
+        <div class="messages-sent-card">
           <label><b>SellerId:</b> <%=message.seller_id%></label>
-          <label
-            ><b>Product Name:</b>
-            <a
-              href="http://localhost:8080/users/product/<%=message.product_id%>?"
-              ><%=message.name%>
-            </a></label
-          >
-          <label><b>Product Price:</b>💲<%=message.price%></label>
+
           <label><b>Message:</b> <%=message.content%></label>
         </div>
         <% } %> <% } %>
       </div>
-<div class = "respond-buttons">
+      <div class="respond-buttons">
         <button class="reply-message-button" id="reply-message-button">
           Reply To A Message
         </button>
         <div id="reply-message-box">
           <p>Select Seller Id To Send A Message To</p>
-          <form class = "respond-seller" method="POST" action="/users/product/reply">
+          <form class="respond-seller" method="POST" action="/users/product/reply">
             <select name="contactId" id="contactId">
               <label for="sellerId">Choose a seller:</label>
               <%for (let message of messages) {%>
@@ -83,19 +66,19 @@
           </form>
         </div>
         <%if (user_email !== "ally@123.com") {%>
-        <button class="message-admin" id="message-admin">Message Admin</button>
-        <div class="message-admin-box" id="message-admin-box">
-          <p>Send Message To The Admin</p>
-          <form class="respond-seller" method="POST" action="/users/product/reply">
-            <select name="contactId" id="contactId">
-              <label for="sellerId">Choose a seller:</label>
-              <option value="1" selected></option>
-            </select>
-            <input type="text" id="name" name="name" /><br />
-            <input name="is_for_admin" type="checkbox" />
-            <center><button class="btn-btn-primary" id="send-admin-button">Submit</button></center>
-          </form>
-<%}%>
+              <button class="message-admin" id="message-admin">Message Admin</button>
+              <div class="message-admin-box" id="message-admin-box">
+                <p>Send Message To The Admin</p>
+                <form class="respond-seller" method="POST" action="/users/product/reply">
+                  <select name="contactId" id="contactId">
+                    <label for="sellerId">Choose a seller:</label>
+                    <option value="1" selected></option>
+                  </select>
+                  <input type="text" id="name" name="name" /><br />
+                  <input name="is_for_admin" type="checkbox" />
+                  <center><button class="btn-btn-primary" id="send-admin-button">Submit</button></center>
+                </form>
+                <%}%>
         </div>
         </div>
       </div>

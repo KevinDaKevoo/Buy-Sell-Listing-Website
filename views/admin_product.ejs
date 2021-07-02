@@ -1,47 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Product Page</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<head>
+  <title>Product Page</title>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-  <body>
-    <%- include("_header") %>
-    <section>
-      <div class="admin-input-form">
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
 
-        <form
-          class="admin-input-form"
-          method="POST"
-          action="/admin/add_listing"
-        >
-          <center>
-            <h2 class="addmin-input-title">Add Product Details Here</h2>
-          </center>
+<body>
+  <%- include("_header") %>
+  <section>
+    <div class="admin-input-form">
 
-          <label for="name">Product Name</label>
-          <input type="text" id="name" name="name" />
-          <label for="seller_id">Seller ID:</label>
-          <input type="text" id="seller_id" name="seller_id" />
-          <label for="type_id">Type ID:</label>
-          <input type="text" id="type_id" name="type_id" />
-          <label for="description">Description</label>
-          <input type="text" id="description" name="description"/>
-          <label for="photo_1">Photo:</label>
-          <input type="text" id="photo_1" name="photo_1" />
-          <label for="price">Price:</label>
-          <input type="text" id="price" name="price" />
-          <center>
-            <button type="submit" class="btn-btn-primary">Submit</button>
-          </center>
-        </form>
-      </div>
-    </section>
-  </body>
+      <form class="admin-input-form" method="POST" action="/admin/add_listing">
+        <center>
+          <h2 class="addmin-input-title">Add Product Details Here</h2>
+        </center>
+
+        <label for="name">Product Name</label>
+        <input type="text" id="name" name="name" />
+        <label for="seller_id">Seller ID:</label>
+        <input type="text" id="seller_id" name="seller_id" />
+        <label for="type_id">Type ID:</label>
+        <input type="text" id="type_id" name="type_id" />
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description" />
+        <label for="photo_1">Photo:</label>
+        <input type="text" id="photo_1" name="photo_1" />
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" />
+        <center>
+          <button type="submit" class="btn-btn-primary">Submit</button>
+        </center>
+      </form>
+    </div>
+  </section>
+</body>
+
 </html>
