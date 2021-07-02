@@ -74,6 +74,7 @@ module.exports = (db) => {
       });
   });
 
+  //Rendering the favourite page
   router.get("/favourite", (req, res) => {
     const sqlQuery = `SELECT favorite_products.id AS favorite_id, products.photo_1, products.name, products.price, products.id AS product_id, user_id FROM favorite_products INNER JOIN products ON products.id = favorite_products.product_id
 WHERE favorite_products.user_id= $1;`;
@@ -90,6 +91,7 @@ WHERE favorite_products.user_id= $1;`;
       });
   });
 
+  //Removing favourite product from user
   router.post("/favourite/:favorite_product_id/delete", (req, res) => {
     const sqlQuery = `DELETE FROM favorite_products WHERE id = $1;`;
     const values = [req.params.favorite_product_id];
@@ -102,6 +104,7 @@ WHERE favorite_products.user_id= $1;`;
       });
   });
 
+  //Product info page
   router.get("/product/:product_id", (req, res) => {
     const product_id = req.params.product_id;
     const sqlQuery = `SELECT * FROM products WHERE id = $1`;
@@ -118,7 +121,7 @@ WHERE favorite_products.user_id= $1;`;
       });
   });
 
-  //Rendering the
+  //Rendering thenew message page
   router.get("/product/:product_id/message", (req, res) => {
     const user_email = req.session.user_email;
     const userId = req.session.user_id;
