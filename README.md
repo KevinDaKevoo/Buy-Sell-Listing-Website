@@ -1,6 +1,50 @@
-LHL Node Skeleton
+LHL Buy-Sell-Listing APP - The Best Shop - Midterm Project
 =========
+## Description
+This is a Buy/Sell Listing Website. An webpage app that allows you to buy/sell new or used laptops. You can quickly find items by filtering by price! 
 
+### Users Can:
+- users can see featured items on a main feed
+- users can filter items by price,
+- users can favourite items to check up on them later, and access a favourites page
+- users can send a message to contact the sellers
+### Admins can:
+- add/post items, which can be seen by others.
+- remove/delete items from the site
+- mark items as SOLD!
+- send messages to users to negotiate
+
+## Screenshots
+
+#### Home Page 
+!["Featured Items"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Home.png)
+
+#### Login Page
+!["Login Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Login.png)
+
+#### Add Listing Page
+!["Add Listing Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Admin-Add-Listing.png)
+
+
+#### Mark Items Sold
+!["Mark Items Sold"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Admin-Mark-Sold.png)
+
+### Admin Home Page
+!["Admin Home Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Admin-home.png)
+
+
+
+#### Filtered Items Page
+!["Filtered Items Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Filtered-page.png)
+
+#### Favorites Page
+!["Favorites Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Favourites-page.png)
+
+#### Message Page 
+!["Message Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/Message-user.png)
+
+#### More Info Page 
+!["More Info Page"] (https://github.com/KevinDaKevoo/Buy-Sell-Listing-Website/blob/master/Docs/More-info-page.png)
 ## Project Setup
 
 The following steps are only for _one_ of the group members to perform.
@@ -37,7 +81,21 @@ The following steps are only for _one_ of the group members to perform.
   - Note: you will lose all newly created (test) data each time this is run, since the schema files will tend to `DROP` the tables and recreate them.
 
 ## Dependencies
+Install all dependencies : npm install
 
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+- body-parser
+- dotenv
+- node-sass-middleware
+- morgan
+- cookie-parser
+- cookie-session
+- chalk
+- express
+- ejs
+
+Run the development web server : npm start Run the app on your browser: http://localhost:8080/
+
+
